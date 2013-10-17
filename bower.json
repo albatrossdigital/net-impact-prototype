@@ -1,0 +1,14 @@
+{
+  "name": "net-impact-styleguide",
+  "version": "0.0.0",
+  "dependencies": {
+    "formalize": "git://github.com/nathansmith/formalize",
+    "modernizr": "~2.6.2",
+    "jquery": "~2.0.0",
+    "prism": "gh-pages",
+    "Element.details": "termi/Element.details"
+  },
+  "devDependencies": {
+    "responsive-indicator": "~0.1.3"
+  }
+}

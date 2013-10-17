@@ -1,0 +1,18 @@
+<div class="component-group--button">
+
+  {{#if page.examples}}
+    {{{create-example-sass "button" all true}}}
+  {{/if}}
+  <ul component-list>
+    {{#each options.grunt.userConfig.components.button}}
+      <li>
+        {{{component "button" this}}}
+
+        {{#if ../page.examples}}
+          {{{create-example-html "button" ../this}}}
+          {{{create-example-sass "button" ../this}}}
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
