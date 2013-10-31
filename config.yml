@@ -19,7 +19,7 @@ author:
 ## General Prototype Settings
 prototype:
   # If you would like a logo to appear in the banner, include its path here
-  logo: false
+  logo: logo.png
   # If you would like to include webfonts, the following two provides have native support
   webfonts:
     # Typekit Kit ID (uses advanced loading method)
