@@ -33,11 +33,23 @@
 @import "modular-scale"
 @import "color-schemer"
 
+
 //////////////////////////////
 // Color Guide
 @import ".prototype/color-guide"
 // This mixin will generate the styling for the color guide. If you would like to write your own, remove it and please do so.
 @include generate-colour-guide($black-tints, $primary-tints, $primary-shades, $secondary-tints, $secondary-shades, $tertiary-tints, $tertiary-shades, $quaternary-tints, $quaternary-shades)
+
+.color-0 
+  background: nth($black-tints, 1)
+.color-1
+  background: nth($primary-tints, 1)
+.color-2
+  background: nth($secondary-tints, 1)
+.color-3
+  background: nth($tertiary-tints, 1)
+.color-4 
+  background: nth($quaternary-tints, 1)
 
 
 // Base
@@ -79,11 +91,11 @@
 
 // Note about using Foundation Icons. OR try the icon mixins included in the _mixin file.
 // The "components/icons" partial is required for the icon sets to work.
-//@import "components/icons";
+@import "components/icons"
 //@import "components/icons-accessibility";
-//@import "components/icons-general";
-//@import "components/icons-general_enclosed";
-//@import "components/icons-social";
+@import "components/icons-general"
+@import "components/icons-general_enclosed"
+@import "components/icons-social"
 
 // Themes
-// @import "theme/button-light";
+@import "theme/styletile"

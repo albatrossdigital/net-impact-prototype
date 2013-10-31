@@ -1,0 +1,42 @@
+//////////////////////////////
+// Placeholdit Component
+//
+// The partial and folder structure for this component should be as follows:
+// _placeholdit.scss
+// placeholdit (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import "placeholdit/mixins";
+@import "placeholdit/extends";
+
+//////////////////////////////
+// Having $output-selectors and $output-selectors--placeholdit set to `true` will output the CSS selectors for PlaceholditComponent
+$output-selectors--placeholdit: true !default;
+@if $output-selectors and $output-selectors--placeholdit {
+//////////////////////////////
+
+//////////////////////////////
+// @{placeholdit}
+// Styling for Placeholdit Component
+
+// {placeholdit}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{placeholdit--200x200}
+// 200x200 styling for Placeholdit Component
+
+// {placeholdit--200x200}@
+//////////////////////////////
+
+}

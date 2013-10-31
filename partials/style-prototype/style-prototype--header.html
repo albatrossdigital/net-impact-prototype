@@ -1,27 +1,44 @@
-<header>
-  <div class="inner-wrapper">
-    <div id="client-id">
+<header role="banner" class="l-header">
+  <nav id="prototype-nav" class="top-bar" role="navigation">
+    <ul class="title-area">
+    <!-- Title Area -->
+      <li class="name">
+        <h1><a class="left" href="#">{{options.grunt.userConfig.client.name}}</a> <span class="left"><small>Version {{options.grunt.userConfig.client.version}}</small></span></h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        {{{prototype-navigation options.grunt.userConfig.sections}}}
+      </ul>
+    </section>
+  </nav>
+  <div class="row">
+    <div class="large-3 columns header-logo">
       {{#if options.grunt.userConfig.prototype.logo}}
-        <div class="client-logo">
-          <img src="{{image-url options.grunt.userConfig.prototype.logo}}" alt="{{options.grunt.userConfig.client.name}} Logo">
-        </div>
+        <a class="left" href="#"><img src="{{image-url options.grunt.userConfig.prototype.logo}}" alt="{{options.grunt.userConfig.client.name}} Logo"></a>
       {{else}}
-        <h1 class="client-name">{{options.grunt.userConfig.client.name}}</h1>
+        <h1><a class="left" href="#">{{options.grunt.userConfig.client.name}}</a></h1>
       {{/if}}
     </div>
-    <aside id="page-id">
-      <h2 class="section-name">{{page.title}}</h2>
-      <div class="page-info">
-        <p>Version {{options.grunt.userConfig.client.version}}</p>
-      </div>
-    </aside>
-  </div>
-  <nav id="prototype-nav" role="navigation">
-    <b data-menu-toggle="closed">menu</b>
-    <div role="menubar">
-      {{{prototype-navigation options.grunt.userConfig.sections}}}
+    <ul class="large-6 columns inline left">
+      <li>{{{link "Explore Careers"}}}</li>
+      <li>{{{link "Find Opporunities"}}}</li>
+      <li>{{{link "Get Involved"}}}</li>
+    </ul>
+    <ul class="inline right">
+      <li>{{{link "Join / Login"}}}</li>
+      <li><a href="#">{{{icon "gen" "search"}}}Search</a></li>
+    </ul>
+    <div class="columns large-12">
+        <div class="left"><h1>{{page.title}}</h1></div>
+        <ul class="button-group right">
+          <li><a href="#" class="button secondary">Silver</a></li>
+          <li><a href="#" class="button success">Professional</a></li>
+        </ul>
     </div>
-  </nav>
+  </div>
   <script type="text/javascript">
     {{! Source for minified output JavaScript, commented out.
     (function() {

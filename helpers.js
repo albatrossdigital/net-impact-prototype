@@ -202,6 +202,26 @@ module.exports = {
       return code;
     }
   },
+  'image': function(src) {
+    var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
+    var newpath = path + '/' + this.options.userConfig.assets.imagesDir + '/' + src;
+    return '<img src="'+ newpath +'">';
+  },
+  'placeholder': function(width, height) {
+    return "<img src='http://placehold.it/" + width + "x" + height + "'>";
+  },
+  'button': function(classes, text) {
+    return '<a href="#" class="button ' + classes + '"">' + text + '</a>';
+  },
+  'link': function(text, classes) {
+    return '<a href="#" class="' + classes + '"">' + text + '</a>';
+  },
+  'icon': function(set, icon) {
+    return '<i class="' + set + 'icons-' + icon + '"></i>';
+  },
   'component': function(component, type) {
 
     var name = type;
@@ -228,17 +248,17 @@ module.exports = {
     function recurseSections(obj) {
       for (var k in obj) {
         if (typeof(obj[k]) === 'object') {
-          output += '<b role="menuitem" data-menu-toggle="closed">' + k + '</b>';
-          output += '\n<div role="menubar">';
+          output += '<li class="has-dropdown"><a href="#">' + k + '</a>';
+          output += '\n<ul class="dropdown">';
           recurseSections(obj[k]);
         }
         else {
           if (k !== 'undefined') {
-            output += '\n<a href="' + basePath + '/' + obj[k] + '" role="menuitem">' + k + '</a>';
+            output += '\n<li><a href="' + basePath + '/' + obj[k] + '">' + k + '</a></li>';
           }
         }
       }
-      output += '\n</div>';
+      output += '\n</ul></li>';
     }
 
     for (var k in menu) {
@@ -252,15 +272,14 @@ module.exports = {
         var file = fs.existsSync(sectionsPath);
 
         if (!file) {
-          output += '\n<a href="' + basePath + '/' + menu[k] + '" role="menuitem">' + k + '</a>';
+          output += '\n<li><a href="' + basePath + '/' + menu[k] + '">' + k + '</a></li>';
         }
         else {
 
-          output += '\n<b role="menuitem" data-menu-toggle="closed">' + k + '</b>';
-
+          output += '\n<li class="has-dropdown"><a href="#">' + k + '</a>';
           file = fs.readFileSync(sectionsPath).toString('utf-8');
-          output += '<div role="menubar">';
-          output += '\n<a href="' + basePath + '/' + menu[k] + '" role="menuitem">' + k + '</a>';
+          output += '\n<ul class="dropdown">';
+          output += '\n<li><a href="' + basePath + '/' + menu[k] + '">' + k + '</a></li>';
           var sections = yaml.safeLoad(file);
           recurseSections(sections);
         }

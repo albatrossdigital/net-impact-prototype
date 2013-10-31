@@ -149,6 +149,7 @@ module.exports = function (grunt) {
       html: {
         files: [
           pagesDir + '/**/*.html',
+          pagesDir + '/**/**/*.html',
           pagesDir + '/**/*.md',
           pagesDir + '/**/*.yml',
           partialsDir + '/**/*.html',
@@ -329,7 +330,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: jsDir,
-          src: ['**/*.js', '!**/*.min.js'],
+          src: ['**/*.js'],//, '!**/*.min.js'],
           dest: root + '/' + jsDir,
           ext: '.js'
         }]
@@ -342,7 +343,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: jsDir,
-          src: ['**/*.js', '!**/*.min.js'],
+          src: ['**/*.js'],//, '!**/*.min.js'],
           dest: distPath + '/' + jsDir,
           ext: '.js'
         }]

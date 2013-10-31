@@ -23,7 +23,7 @@ prototype:
   # If you would like to include webfonts, the following two provides have native support
   webfonts:
     # Typekit Kit ID (uses advanced loading method)
-    typekit: false
+    typekit: svj7lwo
     # Copy in the the families from inside the brackets [] from the JavaScript tab. Be sure to wrap it in "double quotes".
     googleFonts: false
 
@@ -32,7 +32,6 @@ sections:
   Content Strategy: content
   Style Tile: style-tile
   Elements: elements
-  Components: components
   Colors: colors
 
 ## Style Tile Options
@@ -63,16 +62,19 @@ components:
     - warning
     - error
   button:
-    - Call to Action:
+    - Success Button:
         classes:
-          - call-to-action
-    - Big Button:
+          - success
+    - Large Button:
         classes:
-          - big-button
-    - Warning Button:
+          - large
+    - Alert Button:
         classes:
-          - big-button
-          - warning
+          - large
+          - alert
+    - Secondary Button:
+        classes:
+          - secondary
 
 #########################
 ## Color Guide

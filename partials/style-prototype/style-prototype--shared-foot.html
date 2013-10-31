@@ -8,6 +8,11 @@
     {{{script-ext 'Element.details/__COMPILE/Element.details.js' true}}}
 {{/if}}
 
+
+<script>
+  $(document).foundation();
+</script>
+
 {{#if options.development}}
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.lrport}}/livereload.js?snipver=1"></' + 'script>')
     </script>
