@@ -29,10 +29,10 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Content Strategy: content
   Style Tile: style-tile
   Elements: elements
   Colors: colors
+  Chapters: chapters
 
 ## Style Tile Options
 styleTile:

@@ -4,6 +4,18 @@
 .admin-menu .fixed
   top: emCalc(29px)
 
+// do status messages
+.messages
+  &.status
+    +alert($success-color)
+
+  &.warning
+    +alert($secondary-color)
+
+  &.error
+    +alert($alert-color)
+
+
 // Remove the bottom padding on status messages when displayed inside a Zurb
 // Foundation Reveal modal.
 #status-messages.reveal-modal
