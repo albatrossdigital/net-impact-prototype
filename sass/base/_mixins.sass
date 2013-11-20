@@ -92,6 +92,69 @@
 //
 //***********************************
 
+// fonts
+
+@mixin proxima($type: "normal") 
+  font-family: $proxima
+
+  @if $type == "normal"
+    font-weight: 400
+
+  @if $type == "light"
+    font-weight: 300
+
+  @if $type == "thin"
+    font-weight: 100
+
+  @if $type == "bold"
+    font-weight: 700
+
+  @if $type == "extra"
+    font-weight: 900
+
+@mixin gothic($type: "normal") 
+  font-family: $gothic
+
+  @if $type == "normal"
+    font-weight: 400
+
+@mixin quatro($type: "normal") 
+  font-family: $quatro
+
+  @if $type == "normal"
+    font-weight: 400
+
+  @if $type == "light"
+    font-weight: 400
+
+  @if $type == "thin"
+    font-weight: 200
+
+  @if $type == "bold"
+    font-weight: 700
+
+  @if $type == "extra"
+    font-weight: 900
+
+@mixin opensans($type: "normal") 
+  font-family: $opensans
+
+  @if $type == "normal"
+    font-weight: 400
+
+  @if $type == "light"
+    font-weight: 300
+
+  @if $type == "bold"
+    font-weight: 700
+
+  @if $type == "extra"
+    font-weight: 800
+
+
+
+
+
 // general
 // -----------------------------------
 // use the +e() mixin

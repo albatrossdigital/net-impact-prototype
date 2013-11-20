@@ -5,13 +5,18 @@
 
 // Optionally, you can add your colors here.
 // ******************************************************
-// $primary-color: #000;
+$primary-color: #003745
 // $secondary-color: #c00;
 
 // Font Families
 // ------------------------------------------------------
 // $ff-arial: Arial, Helvetica, Sans-serif;
 // $ff-georgia: Georgia, Times, Times New Roman, Sans-serif;
+
+$proxima: "proxima-nova"
+$gothic: "alternate-gothic-no-3-d"
+$quatro: "quatro-slab"
+$opensans: "open-sans"
 
 // Global Variables
 // ------------------------------------------------------
@@ -36,7 +41,8 @@ $base-font-size: 100% !default
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be a different size and not have it effect grid size too,
 // set the value of $em-base to $base-font-size ($em-base: $base-font-size;)
-$em-base: 16 !default
+$em-base: 18 !default
+$base-font-size: 18
 
 // It strips the unit of measure and returns it
 @function strip-unit($num)
@@ -88,10 +94,10 @@ $default-float: left
 
 // Colors
 
-$primary-color: cs-primary()
-$secondary-color: $gray
-$alert-color: cs-quadrary()
-$success-color: cs-tertiary()
+//$primary-color: cs-primary()
+//$secondary-color: $gray
+//$alert-color: cs-quadrary()
+//$success-color: cs-tertiary()
 
 // Make sure border radius matches unless we want it different.
 
@@ -183,9 +189,9 @@ $row-width: emCalc(1400)
 
 // Control header font styles
 
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $header-font-weight: bold;
-// $header-font-style: normal;
+$header-font-family: $proxima
+$header-font-weight: 700
+$header-font-style: normal
 // $header-font-color: #222;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
@@ -194,11 +200,11 @@ $row-width: emCalc(1400)
 
 // Control header font sizes
 
-// $h1-font-size: emCalc(44);
-// $h2-font-size: emCalc(37);
-// $h3-font-size: emCalc(27);
-// $h4-font-size: emCalc(23);
-// $h5-font-size: emCalc(18);
+$h1-font-size: emCalc(52)
+$h2-font-size: emCalc(36)
+$h3-font-size: emCalc(26)
+$h4-font-size: emCalc(20)
+$h5-font-size: emCalc(18)
 // $h6-font-size: 1em;
 
 // Control how subheaders are styled.
@@ -216,8 +222,8 @@ $row-width: emCalc(1400)
 
 // Style paragraphs
 
-// $paragraph-font-family: inherit;
-// $paragraph-font-weight: normal;
+$paragraph-font-family: $opensans
+$paragraph-font-weight: 400
 // $paragraph-font-size: 1em;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: emCalc(20);
@@ -235,9 +241,8 @@ $row-width: emCalc(1400)
 // Style anchors
 
 $anchor-text-decoration: none
-$anchor-font-color: $primary-color
-$anchor-font-color-hover: darken($primary-color, 5%)
-
+$anchor-font-color: #0067b1
+$anchor-font-color-hover: #29abe2
 // Style the <hr> element
 
 // $hr-border-width: 1px;
@@ -383,15 +388,15 @@ $input-border-color: darken(white, 20%)
 
 // We use these to control button text styles.
 
-// $button-font-family: inherit;
-// $button-font-color: #fff;
+$button-font-family: $proxima
+$button-font-color: white
 // $button-font-color-alt: #333;
 // $button-font-med: emCalc(16);
 // $button-font-tny: emCalc(11);
 // $button-font-sml: emCalc(13);
 // $button-font-lrg: emCalc(20);
-// $button-font-weight: bold;
-// $button-font-align: center;
+$button-font-weight: 400
+$button-font-align: center
 
 // We use these to control various hover effects.
 
@@ -399,12 +404,12 @@ $input-border-color: darken(white, 20%)
 
 // We use these to control button border styles.
 
-// $button-border-width: 1px;
+$button-border-width: 2px
 // $button-border-style: solid;
 
 // We use this to set the default radius used throughout the core.
 
-// $button-radius: $global-radius;
+$button-radius: 15px
 // $button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.
@@ -413,6 +418,7 @@ $input-border-color: darken(white, 20%)
 
 //
 // Button Groups
+
 //
 
 // Sets the margin for the right side by default, and the left margin if right-to-left direction is used
