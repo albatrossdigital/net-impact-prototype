@@ -2,71 +2,63 @@
   "title": "Net Impact Style Guide"
 }
 ---
+
 <div class="row">
-  <article class=" columns large-6 text-examples">
-    <div class="headers group">
-  <h1>H1 - San Francisco</h1>
-  <h2><a href="#">H2 - Chapters &amp; Events</a></h2>
-  <h3><a href="#">H3 - The Path to Social Entrepreneurship: Hard Work and Honest Tea</a></h3>
-
-    </div>
+  <article class=" columns large-7 text-examples">
     <div class="text group">
+      <h5>Typography</h5>
+      <h1>H1 - San Francisco</h1>
+      <h2>H2 - Jobs & Internships</h2>
+      <h2><a href="#">H2 - Chapters & Events</a></h2>
+      <h3><a href="#">H3 - The Path to Social Entrepreneurship: Hard Work and Honest Tea</a></h3>
+    </div>
       {{#markdown}}
-Seth presides over one of the greenest (and most successful) beverage companies in the world, Honest Tea. The Huffington Post recently ranked his company as one of the leading “Eight Revolutionary Socially Responsible Companies.” The funny thing is that Seth began his career as a nonprofit activist, never envisioning that he would run a major for-profit consumer products company – green or otherwise.
+Normal Paragraph - Seth presides over one of the greenest (and most successful) beverage companies in the world, Honest Tea. The Huffington Post recently ranked his company as one of the leading “Eight Revolutionary Socially Responsible Companies.” The funny thing is that Seth began his career as a nonprofit activist, never envisioning that he would run a major for-profit consumer products company – green or otherwise.
     {{/markdown}}
+      <blockquote>
+        <p>Block Quote - Trial-by-fire is a great proving ground</p>
+      </blockquote>
+    <div class="headers row">
+      <div class="columns left large-4">
+        <h4><a href="#">H4 - Overview</a></h4>
+        <h4><a href="#">H4 - News</a></h4>
+        <h4><a href="#">H4 - Events</a></h4>
+      </div>
+      <div class="columns left large-4">
+        <h5>H5 - Chicago, IL</h5>
+        <h5>H5 - Internship</h5>
+      </div>
     </div>
-    <div class="text group">
-      {{#markdown}}
-Seth couldn’t let it go. The idea of Honest Tea (a name coined by Barry) was just too enticing. “The way tea is grown, the role it plays in communities in terms of employment, but also as a medium through which friendships are established,” Seth opines. “It became a really wonderful connection.”
-
-And so in 1998 Seth took a huge leap. He reconnected with Barry. He quit his job at Calvert, dumbfounding his employer. He started experimenting with tea recipes in his kitchen, using real tea leaves, not the low-quality “dust” used in most mainstream tea drinks. Once he got the formula right, he repurposed Snapple bottles to hold his concoctions and, with enormous chutzpah, walked in and pitched the folks at Whole Foods.
-
-When asked how he was able to take such a big risk, Seth is surprisingly calm. “We just had to believe it was going to work,” he says matter-of-factly. “It was more an act of faith and persistence. There was a lot of work and challenge, especially in the early years. It certainly didn’t take off overnight.”
-    </div>
-    <div class="headers group">
-    <h4><a href="#">H4 - Overview</a></h4>
-    <h4><a href="#">H4 - News</a></h4>
-    <h4><a href="#">H4 - Events</a></h4>
-    <h5>H5 - Chicago, IL</h5>
-    <h5>H5 - Internship</h5>
-    </div>
-    <div class="columns large-6">
-      {{{placeholder 200 200}}}
-      {{{button "large success" "Large Success button"}}}
-      {{{button "" "Normal button"}}}
-      {{{button "small secondary" "Small button"}}}
-      {{{button "tiny alert" "Tiny alert button"}}}
-    </div>
-    <div class="columns large-6">
-      {{{button "large alert" "Large Alert button"}}}
-      {{{button "success" "Success button"}}}
-      {{{button "small" "Small button"}}}
-      {{{button "tiny secondary" "Small button"}}}
+    <div class="buttons group">
+      <h5>Buttons</h5>
+      <div>{{{button "large success" "Good job!"}}}</div>
+      <div>{{{button "alert" "Terrible Error"}}}</div>
+      <div>{{{button "small" "Ok, proceed"}}}</div>
+      <div>{{{button "tiny secondary" "Delete something"}}}</div>
     </div>
   </article>
 
-  <article class="columns large-6 graphic-examples">
+  <article class="columns large-5 graphic-examples">
 
-    <div class="colors groups">
-      <h4>Possible Colors</h4>
-      <ul class="small-block-grid-1 large-block-grid-5">
+    <div class="colors group">
+      <h5>Colors</h5>
+      <ul class="small-block-grid-2 large-block-grid-3">
         {{#for 0 options.grunt.userConfig.styleTile.colors 1}}
         <li><div class="color-{{this}}"></div></li>
         {{/for}}
       </ul>
     </div>
-    <div class="images group">
+    <div class="assets group">
+      <h5>Assets</h5>
+      {{{image "logo.png"}}}
+      {{{image "education.jpg"}}}
+    <!--<div class="images group">
       <h4>Possible Patterns</h4>
       <ul class="small-block-grid-2 large-block-grid-4">
         {{#each options.grunt.userConfig.styleTile.images}}
           {{{possible-pattern @index this ../this}}}
         {{/each}}
       </ul>
-    </div>
-    <div class="keywords group">
-      {{#each options.grunt.userConfig.styleTile.keywords}}
-      <span class="keyword-{{@index}}">{{this}}</span>
-      {{/each}}
-    </div>
+    </div>-->
   </article>
 </div>

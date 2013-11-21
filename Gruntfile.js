@@ -185,10 +185,10 @@ module.exports = function (grunt) {
         files: [componentsDir + '/**/*'],
         tasks: ['copy:dev']
       },
-      css: {
-        files: [root + '/' + cssDir + '/**/*.css'],
-        tasks: ['csslint']
-      },
+      //css: {
+        //files: [root + '/' + cssDir + '/**/*.css'],
+        //tasks: ['csslint']
+      //},
       config: {
         files: [
           'config.yml',
@@ -283,14 +283,14 @@ module.exports = function (grunt) {
     },
 
     // CSS Lint
-    csslint: {
-      options: {
-        csslintrc: '.csslintrc'
-      },
-      all: [
-        root + '/' + cssDir + '/{,**/}*.css'
-      ]
-    },
+    //csslint: {
+      //options: {
+        //csslintrc: '.csslintrc'
+      //},
+      //all: [
+        //root + '/' + cssDir + '/{,**/}*.css'
+      //]
+    //},
 
     // Image Min Task
     imagemin: {

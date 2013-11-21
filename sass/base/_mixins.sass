@@ -98,55 +98,55 @@
   font-family: $proxima
 
   @if $type == "normal"
-    font-weight: 400
+    font-weight: $font-weight-normal
 
   @if $type == "light"
-    font-weight: 300
+    font-weight: $font-weight-light
 
   @if $type == "thin"
-    font-weight: 100
+    font-weight: $font-weight-thin
 
   @if $type == "bold"
-    font-weight: 700
+    font-weight: $font-weight-bold
 
   @if $type == "extra"
-    font-weight: 900
+    font-weight: $font-weight-extra
 
 @mixin gothic($type: "normal") 
   font-family: $gothic
 
   @if $type == "normal"
-    font-weight: 400
+    font-weight: $font-weight-normal
 
 @mixin quatro($type: "normal") 
   font-family: $quatro
 
   @if $type == "normal"
-    font-weight: 400
+    font-weight: $font-weight-normal
 
   @if $type == "light"
-    font-weight: 400
+    font-weight: $font-weight-light
 
   @if $type == "thin"
     font-weight: 200
 
   @if $type == "bold"
-    font-weight: 700
+    font-weight: $font-weight-bold
 
   @if $type == "extra"
-    font-weight: 900
+    font-weight: $font-weight-extra
 
 @mixin opensans($type: "normal") 
   font-family: $opensans
 
   @if $type == "normal"
-    font-weight: 400
+    font-weight: $font-weight-normal
 
   @if $type == "light"
-    font-weight: 300
+    font-weight: $font-weight-light
 
   @if $type == "bold"
-    font-weight: 700
+    font-weight: $font-weight-bold
 
   @if $type == "extra"
     font-weight: 800

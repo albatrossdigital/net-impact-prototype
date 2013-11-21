@@ -4,27 +4,40 @@
 // - Be sure to load after "foundation" import.
 // - Also, before adding styles be sure to modify variables in the
 //   "scss/_variables.scss" file. You may not need to write any code.
+body
+  line-height: 150%
+
 
 // Headings
 //------------------------------------------
+
+h1, h2, h3, h4, h5
+  a 
+    color: $blue
+
+    &:hover
+      color: darken($blue, 10%)
+
 h1
-  +proxima (extra)
-  color: #003745
+  font-weight: $font-weight-extra
 
 h2
-  +proxima (bold)
-  color: #003745
+  font-weight: $font-weight-bold
+
+  a 
+    color: $green
+
+    &:hover
+      color: darken($green, 10%)
 
 h3
-  +proxima
-  color: #003745
+  font-weight: $font-weight-normal
 
 h4
-  +opensans
-  color: #003745
+  font-weight: $font-weight-bold
 
 h5
-  +quatro
+  +quatro(normal)
 
 
 
@@ -37,6 +50,18 @@ h5
 // a.active,
 // a:active,
 // a:hover {}
+
+// Page elements
+//-----------------------------------------------------------------------------
+
+blockquote
+  +quatro()
+  font-style: italic
+  font-size: 1.65em
+
+  p
+    line-height: 1.4
+
 
 // Form Input
 //-----------------------------------------------------------------------------

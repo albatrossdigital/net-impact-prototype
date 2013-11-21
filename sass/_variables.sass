@@ -1,17 +1,37 @@
-@import "color-guide-vars"
+//@import "color-guide-vars"
 
 /*
  * Theme specific variables.
+$black: #333
+$white: #fff
 
-// Optionally, you can add your colors here.
-// ******************************************************
-$primary-color: #003745
+$dark: #003745
+
+$blue: #0067b1
+$blue-pale: #c3dee0
+
+$teal: #00afef
+
+$green: #7ac142
+
+$pink: #e20177
+
+$orange: #f78e1e
+$orange-pale: #cfc4b5
+
+
 // $secondary-color: #c00;
 
 // Font Families
 // ------------------------------------------------------
 // $ff-arial: Arial, Helvetica, Sans-serif;
 // $ff-georgia: Georgia, Times, Times New Roman, Sans-serif;
+
+$font-weight-normal: 400
+$font-weight-light: 300
+$font-weight-thin: 100
+$font-weight-bold: 700
+$font-weight-extra: 900
 
 $proxima: "proxima-nova"
 $gothic: "alternate-gothic-no-3-d"
@@ -34,15 +54,16 @@ $opensans: "open-sans"
 $base-font-size: 100% !default
 
 // $base-line-height is 24px while $base-font-size is 16px
-// $base-line-height: 150%;
+$base-line-height: 150%
 
 // This is the default html and body font-size for the base em value.
 
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be a different size and not have it effect grid size too,
 // set the value of $em-base to $base-font-size ($em-base: $base-font-size;)
-$em-base: 18 !default
 $base-font-size: 18
+$em-base: $base-font-size !default
+
 
 // It strips the unit of measure and returns it
 @function strip-unit($num)
@@ -94,10 +115,10 @@ $default-float: left
 
 // Colors
 
-//$primary-color: cs-primary()
-//$secondary-color: $gray
-//$alert-color: cs-quadrary()
-//$success-color: cs-tertiary()
+$primary-color: $blue
+$secondary-color: $blue-pale
+$alert-color: $orange
+$success-color: $green
 
 // Make sure border radius matches unless we want it different.
 
@@ -166,7 +187,7 @@ $include-html-progress-classes: false
 // Grid Variables
 //
 
-$row-width: emCalc(1400)
+$row-width: emCalc(1024)
 // $column-gutter: emCalc(30);
 // $total-columns: 12;
 
@@ -190,17 +211,17 @@ $row-width: emCalc(1400)
 // Control header font styles
 
 $header-font-family: $proxima
-$header-font-weight: 700
+$header-font-weight: $font-weight-bold
 $header-font-style: normal
-// $header-font-color: #222;
-// $header-line-height: 1.4;
-// $header-top-margin: .2em;
-// $header-bottom-margin: .5em;
+$header-font-color: $dark
+$header-line-height: 1.1
+$header-top-margin: .3em
+$header-bottom-margin: .5em
 // $header-text-rendering: optimizeLegibility;
 
 // Control header font sizes
 
-$h1-font-size: emCalc(52)
+$h1-font-size: emCalc(58)
 $h2-font-size: emCalc(36)
 $h3-font-size: emCalc(26)
 $h4-font-size: emCalc(20)
@@ -262,9 +283,9 @@ $list-side-margin: 2em
 
 // Style blockquotes
 
-// $blockquote-font-color: lighten($header-font-color, 30%);
-// $blockquote-padding: emCalc(9, 20, 0, 19);
-// $blockquote-border: 1px solid #ddd;
+$blockquote-font-color: $dark
+$blockquote-padding: emCalc(9, 20, 0, 0)
+$blockquote-border: 0
 // $blockquote-cite-font-size: emCalc(13);
 // $blockquote-cite-font-color: lighten($header-font-color, 20%);
 // $blockquote-cite-link-color: $blockquote-cite-font-color;

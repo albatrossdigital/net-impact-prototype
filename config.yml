@@ -31,13 +31,12 @@ prototype:
 sections:
   Style Tile: style-tile
   Elements: elements
-  Colors: colors
   Chapters: chapters
 
 ## Style Tile Options
 styleTile:
   # Number of possible colors
-  colors: 5
+  colors: 6
   # Source links to inspirational images
   # Either relative paths from your images directory, or absolute paths to external images
   images:
@@ -45,7 +44,6 @@ styleTile:
     - patterns/ice.jpg
     - patterns/iceberg.jpg
     - patterns/clouds.jpg
-    - http://lorempixel.com/output/abstract-q-c-640-480-1.jpg
   # Descriptive keywords for Style Tile
   keywords:
     - Default

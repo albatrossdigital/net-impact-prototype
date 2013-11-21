@@ -14,7 +14,7 @@
       </ul>
     </section>
   </nav>
-  <div class="row">
+  <!--<div class="row">
     <div class="large-3 columns header-logo">
       {{#if options.grunt.userConfig.prototype.logo}}
         <a class="left" href="#"><img src="{{image-url options.grunt.userConfig.prototype.logo}}" alt="{{options.grunt.userConfig.client.name}} Logo"></a>
@@ -38,29 +38,6 @@
           <li><a href="#" class="button success">Professional</a></li>
         </ul>
     </div>
-  </div>
-  <script type="text/javascript">
-    {{! Source for minified output JavaScript, commented out.
-    (function() {
-      var menuToggles = document.querySelectorAll('b[data-menu-toggle]');
-      var menuToggleLength = menuToggles.length;
-      for (var i = 0; i < menuToggleLength; i++) {
-        menuToggles[i].addEventListener("click", toggle);
-      }
-
-      function toggle(e) {
-        var toggle = e.target.getAttribute('data-menu-toggle');
-        if (toggle === 'closed') {
-          e.target.setAttribute('data-menu-toggle', 'open');
-        }
-        else {
-          e.target.setAttribute('data-menu-toggle', 'closed');
-        }
-      }
-    })();
-    }}
-    {{! Uglified output to be used on page }}
-    !function(){function d(a){var b=a.target.getAttribute("data-menu-toggle");"closed"===b?a.target.setAttribute("data-menu-toggle","open"):a.target.setAttribute("data-menu-toggle","closed")}for(var a=document.querySelectorAll("b[data-menu-toggle]"),b=a.length,c=0;b>c;c++)a[c].addEventListener("click",d)}();
-  </script>
+  </div>-->
 </header>
 {{{page-sections}}}
