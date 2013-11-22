@@ -15,7 +15,11 @@
   background: $green
 
 // style sections
-.group
+.group > h5 
+  margin-bottom: 2em
+  margin-top: 2em
+
+.buttons.group
   padding-top: 2em
 
 .component-group--button
@@ -30,3 +34,60 @@
 .assets
   img
     margin-bottom: 1em
+
+.images.group
+  ul 
+    max-width: 405px
+    margin: 0 auto
+
++respond( $small )
+  .images.group
+    ul
+      margin: 0
+
+
+.back-blue
+  background: $blue
+  padding: 20px
+  margin-bottom: 1em
+
+  img
+    margin-bottom: 0
+
+@mixin absolute-center($w, $h, $core: true)
+  @if $core
+    position: absolute
+    top: 50%
+    left: 50%
+
+  height: $h
+  margin-left: -($w / 2)
+  margin-top: -($h / 2)
+  width: $w
+
+.text-over
+  text-align: center
+
+  h1, h2, h3
+    color: $white!important
+    margin: 0
+
++respond( $small )
+  .treatment-examples
+    padding-top: 40px
+
+  .image-overlay
+    position: relative
+
+    .back-blue
+      background: $blue-transparent
+
+  .text-over
+    +absolute-center(485px, 120px)
+    padding-top: 0
+    padding-bottom: 0
+    text-align: center
+
+    h1, h2, h3
+      line-height: 120px
+

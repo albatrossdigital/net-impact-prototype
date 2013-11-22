@@ -3,4 +3,40 @@
 // Before adding styles be sure to modify variables in the
 // "scss/_variables.scss" file.
 
-.button
+@mixin button-styling($type: $primary)
+  $color: $teal
+
+  @if $type == success
+    $color: $success-color 
+
+  @if $type == alert
+    $color: $alert-color
+
+  @if $type == secondary
+    $color: $secondary-color
+
+  border-color: $color
+
+  &:hover
+    border-color: darken($color, 5%)
+    color: darken($dark, 5%)
+  
+
+
+.button,
+.form-submit
+  background: none!important
+  +border-radius($button-radius)
+  
+  &,
+  &.primary
+    +button-styling(primary)
+
+  &.alert
+    +button-styling(alert)
+
+  &.success
+    +button-styling(success)
+
+  &.secondary
+    +button-styling(secondary)

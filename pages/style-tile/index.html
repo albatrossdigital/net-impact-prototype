@@ -9,32 +9,32 @@
       <h5>Typography</h5>
       <h1>H1 - San Francisco</h1>
       <h2>H2 - Jobs & Internships</h2>
-      <h2><a href="#">H2 - Chapters & Events</a></h2>
+      <h2><a href="#">H2 - Chapters & Events</a></h2><br>
       <h3><a href="#">H3 - The Path to Social Entrepreneurship: Hard Work and Honest Tea</a></h3>
     </div>
       {{#markdown}}
 Normal Paragraph - Seth presides over one of the greenest (and most successful) beverage companies in the world, Honest Tea. The Huffington Post recently ranked his company as one of the leading “Eight Revolutionary Socially Responsible Companies.” The funny thing is that Seth began his career as a nonprofit activist, never envisioning that he would run a major for-profit consumer products company – green or otherwise.
     {{/markdown}}
       <blockquote>
-        <p>Block Quote - Trial-by-fire is a great proving ground</p>
+        <p>Block Quote - Trial-by-fire is a great proving ground.  Offer up your skills to gain experience.</p>
+        <cite>Seth Goldman</cite>
       </blockquote>
     <div class="headers row">
-      <div class="columns left large-4">
+      <div class="columns left small-6 large-5">
         <h4><a href="#">H4 - Overview</a></h4>
         <h4><a href="#">H4 - News</a></h4>
         <h4><a href="#">H4 - Events</a></h4>
       </div>
-      <div class="columns left large-4">
+      <div class="columns small-6 left large-7">
         <h5>H5 - Chicago, IL</h5>
         <h5>H5 - Internship</h5>
       </div>
     </div>
     <div class="buttons group">
-      <h5>Buttons</h5>
-      <div>{{{button "large success" "Good job!"}}}</div>
-      <div>{{{button "alert" "Terrible Error"}}}</div>
-      <div>{{{button "small" "Ok, proceed"}}}</div>
-      <div>{{{button "tiny secondary" "Delete something"}}}</div>
+      <div>{{{button "large success" "Find Opportunities"}}}</div>
+      <div>{{{button "primary" "Register Today"}}}</div>
+      <div>{{{button "small alert" "Login"}}}</div>
+      <div>{{{button "tiny secondary" "Back"}}}</div>
     </div>
   </article>
 
@@ -51,14 +51,24 @@ Normal Paragraph - Seth presides over one of the greenest (and most successful) 
     <div class="assets group">
       <h5>Assets</h5>
       {{{image "logo.png"}}}
+      <div class="back-blue">{{{image "logo-white.png"}}}</div>
       {{{image "education.jpg"}}}
-    <!--<div class="images group">
-      <h4>Possible Patterns</h4>
-      <ul class="small-block-grid-2 large-block-grid-4">
-        {{#each options.grunt.userConfig.styleTile.images}}
-          {{{possible-pattern @index this ../this}}}
-        {{/each}}
-      </ul>
-    </div>-->
+      <div class="images group">
+      <h5>Patterns</h5>
+        <ul class="large-block-grid-2">
+          {{#each options.grunt.userConfig.styleTile.images}}
+            {{{possible-pattern @index this ../this}}}
+          {{/each}}
+        </ul>
+      </div>
+  </article>
+  <article class=" columns large-12 treatment-examples">
+    <div class="image-overlay group">
+      <h5>Treatments</h5>
+      <div class="image-overlay">
+        {{{ image "conference.jpg"}}}
+        <div class="back-blue text-over"><h1>San Francisco</h1></div>
+      </div>
+    </div>
   </article>
 </div>

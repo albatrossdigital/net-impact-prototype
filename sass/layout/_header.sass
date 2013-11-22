@@ -5,6 +5,17 @@
 .title-area
   span small
     line-height: $topbar-height
+    position: absolute
+    left: 0
+    right: 0
+    text-align: center
+
++respond($small)
+  .title-area
+    span small
+      position: relative
+      text-align: left
+      width: auto
 
 // Top Bar
 //--------------------------------------------------

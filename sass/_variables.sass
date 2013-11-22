@@ -9,6 +9,7 @@ $dark: #003745
 
 $blue: #0067b1
 $blue-pale: #c3dee0
+$blue-transparent: rgba($blue, 0.75)
 
 $teal: #00afef
 
@@ -286,9 +287,9 @@ $list-side-margin: 2em
 $blockquote-font-color: $dark
 $blockquote-padding: emCalc(9, 20, 0, 0)
 $blockquote-border: 0
-// $blockquote-cite-font-size: emCalc(13);
-// $blockquote-cite-font-color: lighten($header-font-color, 20%);
-// $blockquote-cite-link-color: $blockquote-cite-font-color;
+$blockquote-cite-font-size: #{$base-font-size}#{'px'}
+$blockquote-cite-font-color: $dark
+$blockquote-cite-link-color: $blockquote-cite-font-color
 
 // Acronym styles
 
@@ -398,8 +399,8 @@ $input-border-color: darken(white, 20%)
 // We use these to build padding for buttons.
 
 // $button-med: emCalc(12);
-// $button-tny: emCalc(7);
-// $button-sml: emCalc(9);
+$button-tny: emCalc(6)
+$button-sml: emCalc(8)
 // $button-lrg: emCalc(16);
 
 // We use this to control the display property.
@@ -410,13 +411,13 @@ $input-border-color: darken(white, 20%)
 // We use these to control button text styles.
 
 $button-font-family: $proxima
-$button-font-color: white
-// $button-font-color-alt: #333;
-// $button-font-med: emCalc(16);
-// $button-font-tny: emCalc(11);
-// $button-font-sml: emCalc(13);
-// $button-font-lrg: emCalc(20);
-$button-font-weight: 400
+$button-font-color: $dark
+$button-font-color-alt: lighten($dark, 5%)
+$button-font-med: emCalc(18)
+$button-font-tny: emCalc(16)
+$button-font-sml: emCalc(18)
+$button-font-lrg: emCalc(18)
+$button-font-weight: $font-weight-bold
 $button-font-align: center
 
 // We use these to control various hover effects.
@@ -425,13 +426,14 @@ $button-font-align: center
 
 // We use these to control button border styles.
 
-$button-border-width: 2px
+$button-border-width: 3px
 // $button-border-style: solid;
 
 // We use this to set the default radius used throughout the core.
 
-$button-radius: 15px
-// $button-round: $global-rounded;
+$button-radius: 3px
+//$button-round: $global-rounded
+
 
 // We use this to set default opacity for disabled buttons.
 

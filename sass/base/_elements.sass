@@ -38,6 +38,7 @@ h4
 
 h5
   +quatro(normal)
+  color: $black
 
 
 
@@ -59,8 +60,17 @@ blockquote
   font-style: italic
   font-size: 1.65em
 
+  &, p, cite 
+    color: $black
+
   p
     line-height: 1.4
+
+  p ~ cite 
+    margin-top: -1em
+
+  cite
+    font-style: normal
 
 
 // Form Input

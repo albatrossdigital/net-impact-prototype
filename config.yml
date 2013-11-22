@@ -31,7 +31,8 @@ prototype:
 sections:
   Style Tile: style-tile
   Elements: elements
-  Chapters: chapters
+##Chapters: chapters
+##Colors: colors
 
 ## Style Tile Options
 styleTile:
@@ -40,10 +41,8 @@ styleTile:
   # Source links to inspirational images
   # Either relative paths from your images directory, or absolute paths to external images
   images:
-    - patterns/moon.jpg
-    - patterns/ice.jpg
-    - patterns/iceberg.jpg
-    - patterns/clouds.jpg
+    - patterns/pattern-blue.png
+    - patterns/pattern-tan.png
   # Descriptive keywords for Style Tile
   keywords:
     - Default
