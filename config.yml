@@ -139,5 +139,5 @@ bump:
 git:
   # If you use grunt build --commit, this will be git commit message used
   defaultCommit: Production build and commit
-  deployUpstream: origin
+  deployUpstream: github
   deployBranch: gh-pages
