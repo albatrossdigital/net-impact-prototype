@@ -7614,8 +7614,9 @@ textarea {
 .title-region {
   background: #eaf3f9;
   padding: 1.875em 0;
+  margin-bottom: 1.875em;
 }
-/* line 47, ../sass/layout/_header.sass */
+/* line 48, ../sass/layout/_header.sass */
 .title-region h1 {
   margin: 0;
 }
