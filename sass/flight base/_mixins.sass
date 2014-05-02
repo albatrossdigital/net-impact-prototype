@@ -1,0 +1,189 @@
+// @file
+
+//************************************
+// Backgrounds
+//************************************
+
+@mixin fixed-background($image: url(../images/bg.jpg), $color: #fff)
+  background: $color $image no-repeat center center fixed
+  +background-size(cover)
+
+@mixin fade-background($start, $stop, $position: top)
+  +background-image(linear-gradient($position, $start, $stop))
+  background-color: $start
+
+@mixin auto-fade-background($color, $position: top)
+  +fade-background(lighten($color, 20%), $color, $position)
+
+@mixin auto-fade-background-hover($color)
+  +auto-fade-background($color, top)
+
+  &:hover
+    +auto-fade-background($color, bottom)
+
+
+//************************************
+// Type
+//************************************
+
+// apply styles to an element and any link within
+@mixin and-a()
+  &,
+  a
+    @content
+
+// forces link behavior
+@mixin link-clear($color)
+  &,
+  a
+    color: $color !important
+    text-decoration: none !important
+
+
+//************************************
+// Layout utilities
+//************************************
+
+
+// centers an element
+@mixin centered()
+  margin-right: auto
+  margin-left: auto
+  float: none
+  display: block
+
+// centers an element with a max width
+@mixin max-width-center($width: $grid-max-width)
+  max-width: $width
+  +centered
+
+
+//************************************
+// Responsive
+//************************************
+@mixin respond($media)
+  @media #{$media}
+    @content
+
+
+//************************************
+// Sprites
+//************************************
+
+// simple sprite
+@mixin sprite($left, $top, $img: "sprite.png", $repeat: no-repeat)
+  background-image: url(../images/#{$img})
+  background-position: $left $top
+  background-repeat: $repeat
+
+// text replacing sprite
+// $img file name
+@mixin sprite-block($width, $height, $left, $top, $img: "sprite.png", $repeat: no-repeat)
+  width: $width
+  height: $height
+  display: block
+  text-indent: -1000em
+  overflow: hidden
+  @include sprite($left, $top, $img, $repeat)
+
+
+// Create folder in images/ called icons/
+//
+// Put this in subtheme mixin file under the sprites section
+// $icons: sprite-map("icons/*.png")
+//
+// If certain icons need spacing / alignment use this call form instead
+// $icons: sprite-map("icons/*.png", $icons-ICONNAME-position: 100%, $icons-ANOTHERICON-spacing: 100px)
+//
+// Call using
+// +get-sprite(name ($icons),
+//             file without .png (facebook),
+//             offset-x,
+//             offset-y,
+//             repeat,
+//             set height of item to sprite height?,
+//             set width of item to sprite width?,
+//             exchange image with another on hover? Use the file name (facebook_hover))
+//
+// The hover functionality assumes you have the image in the same sprite folder.
+
+// http://compass-style.org/reference/compass/helpers/sprites/
+@mixin get-sprite($map, $sprite, $offset-x: 0, $offset-y: 0, $repeat: no-repeat, $height: true, $width: true, $hover: false)
+  //http://compass-style.org/reference/compass/helpers/sprites/#sprite-file
+  $sprite-image: sprite-file($map, $sprite)
+
+  // http://compass-style.org/reference/compass/helpers/sprites/#sprite-url
+  $sprite-map: sprite-url($map)
+
+  // http://compass-style.org/reference/compass/helpers/sprites/#sprite-position
+  $sprite-position: sprite-position($map, $sprite, $offset-x, $offset-y)
+
+  // Returns background
+  background: $sprite-map $sprite-position $repeat
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $height == true
+    // Gets the height of the sprite-image
+    $sprite-height: image-height($sprite-image)
+    // Returns the height
+    height: $sprite-height
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $width == true
+    // Gets the height of the sprite-image
+    $sprite-width: image-width($sprite-image)
+    // Returns the width
+    width: $sprite-width
+
+
+  @if $hover
+    $sprite-image: sprite-file($map, $hover)
+
+    // http://compass-style.org/reference/compass/helpers/sprites/#sprite-url
+    $sprite-map: sprite-url($map)
+
+    // http://compass-style.org/reference/compass/helpers/sprites/#sprite-position
+    $sprite-position: sprite-position($map, $hover, $offset-x, $offset-y)
+
+    &:hover, &:focus
+      // Returns background
+      background: $sprite-map $sprite-position $repeat
+
+
+//**************************
+//*  Forms
+//**************************/
+
+// hit all bootstrap inputs
+@mixin all-form-inputs
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"]
+    @content
+
+// make a form width 100% to the container
+@mixin full-width-form()
+  &,
+  .form-item
+    width: 100%
+
+  +all-form-inputs
+    display: block
+    width: 100%
+    +box-sizing(border-box)
+    min-height: $input-height

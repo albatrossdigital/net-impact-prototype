@@ -1,0 +1,46 @@
+// Docs: http://foundation.zurb.com/docs/components/buttons.html
+//
+// Before adding styles be sure to modify variables in the
+// "scss/_variables.scss" file.
+
+@mixin button-styling($type: $primary)
+  $color: $primary-color
+
+  @if $type == success
+    $color: $success-color 
+
+  @if $type == alert
+    $color: $alert-color
+
+  @if $type == secondary
+    $color: $secondary-color
+
+  background-color: $color
+
+  &:hover
+    background-color: lighten($color, 5%)
+
+  &:active
+    background-color: darken($color, 5%)
+  
+
+
+.button,
+button
+  +border-radius($button-radius)
+
+  &, &:active
+    +box-shadow(none)
+  
+  &,
+  &.primary
+    +button-styling(primary)
+
+  &.alert
+    +button-styling(alert)
+
+  &.success
+    +button-styling(success)
+
+  &.secondary
+    +button-styling(secondary)

@@ -1,0 +1,127 @@
+// Docs: http://foundation.zurb.com/docs/components/forms.html
+
+// System forms should have a restricted width for form items
+div.main > form > div
+  & > .form-item
+    +grid-column(4, false, false, false, false, false, true)
+    clear: left
+  & > .form-submit
+    clear: both
+    display: block
+
+// Drupal specific classes
+// ----------------------------------------------------------------------------
+
+
+// Form items
+div.form-item
+  margin-bottom: 0
+  margin-top: 0
+  padding: 0
+
+  input,
+  select 
+    & ~ .description
+      margin-top: -($form-spacing/2.25)
+      margin-bottom: $form-spacing
+
+
+// Others need some margins
+.form-textarea-wrapper,
+.fieldset-description
+  margin-bottom: $form-spacing
+
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"]
+  +border-radius(2px)
+
+input[type="checkbox"], input[type="radio"]
+  float: left
+  margin-bottom: 0
+  margin-top: rem-calc(4)
+
+  & ~ label
+    display: block
+    margin-left: 0
+    padding-left: rem-calc(25)
+
+.form-type-checkbox, .form-type-radio
+  margin-bottom: 1rem
+
+  input
+    float: left
+
+    & ~ .description
+      margin-top: ($form-spacing/2)
+      margin-bottom: $form-spacing
+      margin-left: rem-calc(25)
+
+.description, label
+  font-family: $proxima
+
+label 
+
+
+.description 
+  font-size: $form-label-font-size
+  font-family: $proxima
+
+// autocomplete
+html.js
+  .form-item-autocomplete
+    position: relative
+  .form-autocomplete-wrap
+    margin-top: -($form-spacing + $input-font-size + emCalc(7.5))
+    position: absolute
+    right: $form-spacing / 2
+  .spinner
+    display: inline-block
+    +spinner-core(15px)
+  input.form-autocomplete
+    background-image: none
+  input.form-autocomplete.throbbing ~ .field-suffix .spinner
+    +spinner-active
+
+// vertical tabs / fieldsets
+fieldset
+  .vertical-tabs-panes &
+    margin-left: nth($fieldset-margin, 1)
+    margin-right: nth($fieldset-margin, 1)
+
+// file fields
+input.form-file
+  +form-element
+  +box-sizing(content-box)
+  display: inline-block
+  height: auto
+  width: auto
+  .form-managed-file &
+    margin-right: $form-spacing
+
+// managed file submit
+.form-submit
+  .form-managed-file &
+    //+button-size($button-sml);
+    +button-size($button-tny)
+
+// inline containers
+.container-inline
+  div,
+  label
+    display: inline-block
+
+// checkbox /radio options
+.form-item label.option
+
+// password form
+.form-type-password-confirm
+  @media #{$small}
+    & > .form-item
+      +clearfix
+      margin-bottom: 0
+      input.form-text
+        +grid-column(6, false, false, false, false, 6)
+      label
+        +grid-column(6, false, false, false, false, 6, true)
+      .password-strength,
+      .password-confirm
+        +grid-column(6, true, false, false, 6)

@@ -1,0 +1,3546 @@
+$fa-font-path: "../fonts/fontawesome"
+$fontName: "FontAwesome"
+
+//$fa-font-path:        "//netdna.bootstrapcdn.com/font-awesome/4.0.3/fonts" !default // for referencing Bootstrap CDN font files directly
+$fa-css-prefix: "fa"
+$fa-version: "4.0.3"
+$fa-border-color: #eee
+$fa-inverse: #fff
+$fa-li-width: (30em / 14)
+
+//***********************************
+//
+// Icon Helpers for NON foundation icons mixins
+//
+// There are a number of ways to include icon fonts in your css / sass.
+//
+// The most common is to inject
+//
+// class="icon-name"
+//
+// into html structure, and load a separate icon font stylesheet. This is
+// probably the easiest for the majority of cases.
+//
+// Another would be to set up some tools to place icons with css only.
+//
+// These are some tools to assist the second scenario.
+//
+// 1) Set up the icon variables in _variables.
+// 2) Fill in some real values in the example section below.
+// 3) Call icons-init in your style sheet
+// 4) Insert an icon using +icon(twitter)
+//
+//***********************************
+
+// EXAMPLE ICONS
+// Replace with actual values provided by your downloaded icon font package.
+// The format of the naming scheme should be:
+//
+// %icon-ICON-NAME
+//   content: "\code"
+
+// The extendable definition
+%icons-core
+  display: inline-block
+  font-family: FontAwesome
+  font-style: normal
+  font-weight: normal
+  line-height: 1
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+// Simple icon mixin
+// $icon: the name without the "icon-" preface
+// $size: (optional) font-size the icon should be
+// $color: (optional) color of the icon
+// $hover: (optional) color of the icon on hover
+=icon($icon, $size: inherit, $color: false, $hover: false)
+  @if $hover != false
+    &:hover
+      &:before
+        color: $hover
+  @extend %fa-#{$icon}
+  &:before
+    font-size: $size
+    @if $color != false
+      color: $color
+    @extend %icons-core
+    
+=nice-icon($icon, $size: inherit, $color: false, $hover: false)
+  +icon($icon, $size, $color, $hover)
+  &:before
+    margin-right: 0.5em
+    text-align: center
+    width: 1em
+
+// standard teaser list styling
+@mixin icon-after($icon: $fa-var-long-arrow-right, $color: inherit)
+  &:after
+    @extend %icons-core
+    content: $icon
+    color: $color
+    display: inline-block
+    padding-left: .5rem
+
+// Mixin replaces an element with the icon
+// $icon: the name without the "icon-" preface
+// $width: width the element should be
+// $height: (optional) height the element should be
+// $size: (optional) font-size the icon should be
+// $color: (optional) color of the icon
+// $hover: (optional) color of the icon on hover
+=icon-replace($icon, $width, $height: false, $size: inherit, $color: false, $hover: false)
+  @if $hover != false
+    &:hover
+      &:before
+        color: $hover
+  display: inline-block
+  text-align: center
+  @extend %fa-#{$icon}
+  &,
+  &:before
+    @if $height != false
+      height: $height
+    overflow: hidden
+    width: $width
+  &:before
+    font-size: $size
+    @if $height != false
+      line-height: $height
+    @if $color != false
+      color: $color
+    @extend %icons-core
+
+@font-face
+  font-family: 'FontAwesome'
+  src: url('#{$fa-font-path}/fontawesome-webfont.eot?v=#{$fa-version}')
+  src: url('#{$fa-font-path}/fontawesome-webfont.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'), url('#{$fa-font-path}/fontawesome-webfont.woff?v=#{$fa-version}') format('woff'), url('#{$fa-font-path}/fontawesome-webfont.ttf?v=#{$fa-version}') format('truetype'), url('#{$fa-font-path}/fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular') format('svg')
+  //src: url('#{$fa-font-path/FontAwesome.otf') format('opentype') // used when developing fonts
+  font-weight: normal
+  font-style: normal
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+
+i[class^="#{$fa-css-prefix}"]
+  @extend %icons-core
+  margin-right: 0.25em
+
+@mixin icon-replace-link-core()
+  overflow: hidden
+  padding-left: 0
+  padding-right: 0
+  position: relative
+  display: inline-block
+
+@mixin icon-replace-link-size($size)
+  height: $size
+  width: $size
+  text-indent: -(10 * $size)
+
+@mixin icon-replace-icon-core()
+  position: absolute
+  left: 0
+  text-align: center
+  top: 0
+  text-indent: 0
+
+@mixin icon-replace-icon-size($size, $font)
+  font-size: $font
+  line-height: $size
+  width: $size
+
+// fudge the icon styling on a button with appropriate paddding
+// USE PIXELS FOR IE
+@mixin icon-button-replace($icon: $fa-var-chevron-right, $size: 36px, $font: ($size*.75), $selector: '&:before')
+  +icon-replace-link-core()
+  +icon-replace-link-size($size)
+
+  #{$selector}
+    @if $icon
+      content: $icon
+      @extend %icons-core
+    +icon-replace-icon-core()
+    +icon-replace-icon-size($size, $font)
+
+
+// Variables
+// --------------------------
+
+$fa-var-glass: "\f000"
+$fa-var-music: "\f001"
+$fa-var-search: "\f002"
+$fa-var-envelope-o: "\f003"
+$fa-var-heart: "\f004"
+$fa-var-star: "\f005"
+$fa-var-star-o: "\f006"
+$fa-var-user: "\f007"
+$fa-var-film: "\f008"
+$fa-var-th-large: "\f009"
+$fa-var-th: "\f00a"
+$fa-var-th-list: "\f00b"
+$fa-var-check: "\f00c"
+$fa-var-times: "\f00d"
+$fa-var-search-plus: "\f00e"
+$fa-var-search-minus: "\f010"
+$fa-var-power-off: "\f011"
+$fa-var-signal: "\f012"
+$fa-var-cog: "\f013"
+$fa-var-trash-o: "\f014"
+$fa-var-home: "\f015"
+$fa-var-file-o: "\f016"
+$fa-var-clock-o: "\f017"
+$fa-var-road: "\f018"
+$fa-var-download: "\f019"
+$fa-var-arrow-circle-o-down: "\f01a"
+$fa-var-arrow-circle-o-up: "\f01b"
+$fa-var-inbox: "\f01c"
+$fa-var-play-circle-o: "\f01d"
+$fa-var-repeat: "\f01e"
+$fa-var-refresh: "\f021"
+$fa-var-list-alt: "\f022"
+$fa-var-lock: "\f023"
+$fa-var-flag: "\f024"
+$fa-var-headphones: "\f025"
+$fa-var-volume-off: "\f026"
+$fa-var-volume-down: "\f027"
+$fa-var-volume-up: "\f028"
+$fa-var-qrcode: "\f029"
+$fa-var-barcode: "\f02a"
+$fa-var-tag: "\f02b"
+$fa-var-tags: "\f02c"
+$fa-var-book: "\f02d"
+$fa-var-bookmark: "\f02e"
+$fa-var-print: "\f02f"
+$fa-var-camera: "\f030"
+$fa-var-font: "\f031"
+$fa-var-bold: "\f032"
+$fa-var-italic: "\f033"
+$fa-var-text-height: "\f034"
+$fa-var-text-width: "\f035"
+$fa-var-align-left: "\f036"
+$fa-var-align-center: "\f037"
+$fa-var-align-right: "\f038"
+$fa-var-align-justify: "\f039"
+$fa-var-list: "\f03a"
+$fa-var-outdent: "\f03b"
+$fa-var-indent: "\f03c"
+$fa-var-video-camera: "\f03d"
+$fa-var-picture-o: "\f03e"
+$fa-var-pencil: "\f040"
+$fa-var-map-marker: "\f041"
+$fa-var-adjust: "\f042"
+$fa-var-tint: "\f043"
+$fa-var-pencil-square-o: "\f044"
+$fa-var-share-square-o: "\f045"
+$fa-var-check-square-o: "\f046"
+$fa-var-arrows: "\f047"
+$fa-var-step-backward: "\f048"
+$fa-var-fast-backward: "\f049"
+$fa-var-backward: "\f04a"
+$fa-var-play: "\f04b"
+$fa-var-pause: "\f04c"
+$fa-var-stop: "\f04d"
+$fa-var-forward: "\f04e"
+$fa-var-fast-forward: "\f050"
+$fa-var-step-forward: "\f051"
+$fa-var-eject: "\f052"
+$fa-var-chevron-left: "\f053"
+$fa-var-chevron-right: "\f054"
+$fa-var-plus-circle: "\f055"
+$fa-var-minus-circle: "\f056"
+$fa-var-times-circle: "\f057"
+$fa-var-check-circle: "\f058"
+$fa-var-question-circle: "\f059"
+$fa-var-info-circle: "\f05a"
+$fa-var-crosshairs: "\f05b"
+$fa-var-times-circle-o: "\f05c"
+$fa-var-check-circle-o: "\f05d"
+$fa-var-ban: "\f05e"
+$fa-var-arrow-left: "\f060"
+$fa-var-arrow-right: "\f061"
+$fa-var-arrow-up: "\f062"
+$fa-var-arrow-down: "\f063"
+$fa-var-share: "\f064"
+$fa-var-expand: "\f065"
+$fa-var-compress: "\f066"
+$fa-var-plus: "\f067"
+$fa-var-minus: "\f068"
+$fa-var-asterisk: "\f069"
+$fa-var-exclamation-circle: "\f06a"
+$fa-var-gift: "\f06b"
+$fa-var-leaf: "\f06c"
+$fa-var-fire: "\f06d"
+$fa-var-eye: "\f06e"
+$fa-var-eye-slash: "\f070"
+$fa-var-exclamation-triangle: "\f071"
+$fa-var-plane: "\f072"
+$fa-var-calendar: "\f073"
+$fa-var-random: "\f074"
+$fa-var-comment: "\f075"
+$fa-var-magnet: "\f076"
+$fa-var-chevron-up: "\f077"
+$fa-var-chevron-down: "\f078"
+$fa-var-retweet: "\f079"
+$fa-var-shopping-cart: "\f07a"
+$fa-var-folder: "\f07b"
+$fa-var-folder-open: "\f07c"
+$fa-var-arrows-v: "\f07d"
+$fa-var-arrows-h: "\f07e"
+$fa-var-bar-chart-o: "\f080"
+$fa-var-twitter-square: "\f081"
+$fa-var-facebook-square: "\f082"
+$fa-var-camera-retro: "\f083"
+$fa-var-key: "\f084"
+$fa-var-cogs: "\f085"
+$fa-var-comments: "\f086"
+$fa-var-thumbs-o-up: "\f087"
+$fa-var-thumbs-o-down: "\f088"
+$fa-var-star-half: "\f089"
+$fa-var-heart-o: "\f08a"
+$fa-var-sign-out: "\f08b"
+$fa-var-linkedin-square: "\f08c"
+$fa-var-thumb-tack: "\f08d"
+$fa-var-external-link: "\f08e"
+$fa-var-sign-in: "\f090"
+$fa-var-trophy: "\f091"
+$fa-var-github-square: "\f092"
+$fa-var-upload: "\f093"
+$fa-var-lemon-o: "\f094"
+$fa-var-phone: "\f095"
+$fa-var-square-o: "\f096"
+$fa-var-bookmark-o: "\f097"
+$fa-var-phone-square: "\f098"
+$fa-var-twitter: "\f099"
+$fa-var-facebook: "\f09a"
+$fa-var-github: "\f09b"
+$fa-var-unlock: "\f09c"
+$fa-var-credit-card: "\f09d"
+$fa-var-rss: "\f09e"
+$fa-var-hdd-o: "\f0a0"
+$fa-var-bullhorn: "\f0a1"
+$fa-var-bell: "\f0f3"
+$fa-var-certificate: "\f0a3"
+$fa-var-hand-o-right: "\f0a4"
+$fa-var-hand-o-left: "\f0a5"
+$fa-var-hand-o-up: "\f0a6"
+$fa-var-hand-o-down: "\f0a7"
+$fa-var-arrow-circle-left: "\f0a8"
+$fa-var-arrow-circle-right: "\f0a9"
+$fa-var-arrow-circle-up: "\f0aa"
+$fa-var-arrow-circle-down: "\f0ab"
+$fa-var-globe: "\f0ac"
+$fa-var-wrench: "\f0ad"
+$fa-var-tasks: "\f0ae"
+$fa-var-filter: "\f0b0"
+$fa-var-briefcase: "\f0b1"
+$fa-var-arrows-alt: "\f0b2"
+$fa-var-users: "\f0c0"
+$fa-var-link: "\f0c1"
+$fa-var-cloud: "\f0c2"
+$fa-var-flask: "\f0c3"
+$fa-var-scissors: "\f0c4"
+$fa-var-files-o: "\f0c5"
+$fa-var-paperclip: "\f0c6"
+$fa-var-floppy-o: "\f0c7"
+$fa-var-square: "\f0c8"
+$fa-var-bars: "\f0c9"
+$fa-var-list-ul: "\f0ca"
+$fa-var-list-ol: "\f0cb"
+$fa-var-strikethrough: "\f0cc"
+$fa-var-underline: "\f0cd"
+$fa-var-table: "\f0ce"
+$fa-var-magic: "\f0d0"
+$fa-var-truck: "\f0d1"
+$fa-var-pinterest: "\f0d2"
+$fa-var-pinterest-square: "\f0d3"
+$fa-var-google-plus-square: "\f0d4"
+$fa-var-google-plus: "\f0d5"
+$fa-var-money: "\f0d6"
+$fa-var-caret-down: "\f0d7"
+$fa-var-caret-up: "\f0d8"
+$fa-var-caret-left: "\f0d9"
+$fa-var-caret-right: "\f0da"
+$fa-var-columns: "\f0db"
+$fa-var-sort: "\f0dc"
+$fa-var-sort-asc: "\f0dd"
+$fa-var-sort-desc: "\f0de"
+$fa-var-envelope: "\f0e0"
+$fa-var-linkedin: "\f0e1"
+$fa-var-undo: "\f0e2"
+$fa-var-gavel: "\f0e3"
+$fa-var-tachometer: "\f0e4"
+$fa-var-comment-o: "\f0e5"
+$fa-var-comments-o: "\f0e6"
+$fa-var-bolt: "\f0e7"
+$fa-var-sitemap: "\f0e8"
+$fa-var-umbrella: "\f0e9"
+$fa-var-clipboard: "\f0ea"
+$fa-var-lightbulb-o: "\f0eb"
+$fa-var-exchange: "\f0ec"
+$fa-var-cloud-download: "\f0ed"
+$fa-var-cloud-upload: "\f0ee"
+$fa-var-user-md: "\f0f0"
+$fa-var-stethoscope: "\f0f1"
+$fa-var-suitcase: "\f0f2"
+$fa-var-bell-o: "\f0a2"
+$fa-var-coffee: "\f0f4"
+$fa-var-cutlery: "\f0f5"
+$fa-var-file-text-o: "\f0f6"
+$fa-var-building-o: "\f0f7"
+$fa-var-hospital-o: "\f0f8"
+$fa-var-ambulance: "\f0f9"
+$fa-var-medkit: "\f0fa"
+$fa-var-fighter-jet: "\f0fb"
+$fa-var-beer: "\f0fc"
+$fa-var-h-square: "\f0fd"
+$fa-var-plus-square: "\f0fe"
+$fa-var-angle-double-left: "\f100"
+$fa-var-angle-double-right: "\f101"
+$fa-var-angle-double-up: "\f102"
+$fa-var-angle-double-down: "\f103"
+$fa-var-angle-left: "\f104"
+$fa-var-angle-right: "\f105"
+$fa-var-angle-up: "\f106"
+$fa-var-angle-down: "\f107"
+$fa-var-desktop: "\f108"
+$fa-var-laptop: "\f109"
+$fa-var-tablet: "\f10a"
+$fa-var-mobile: "\f10b"
+$fa-var-circle-o: "\f10c"
+$fa-var-quote-left: "\f10d"
+$fa-var-quote-right: "\f10e"
+$fa-var-spinner: "\f110"
+$fa-var-circle: "\f111"
+$fa-var-reply: "\f112"
+$fa-var-github-alt: "\f113"
+$fa-var-folder-o: "\f114"
+$fa-var-folder-open-o: "\f115"
+$fa-var-smile-o: "\f118"
+$fa-var-frown-o: "\f119"
+$fa-var-meh-o: "\f11a"
+$fa-var-gamepad: "\f11b"
+$fa-var-keyboard-o: "\f11c"
+$fa-var-flag-o: "\f11d"
+$fa-var-flag-checkered: "\f11e"
+$fa-var-terminal: "\f120"
+$fa-var-code: "\f121"
+$fa-var-reply-all: "\f122"
+$fa-var-mail-reply-all: "\f122"
+$fa-var-star-half-o: "\f123"
+$fa-var-location-arrow: "\f124"
+$fa-var-crop: "\f125"
+$fa-var-code-fork: "\f126"
+$fa-var-chain-broken: "\f127"
+$fa-var-question: "\f128"
+$fa-var-info: "\f129"
+$fa-var-exclamation: "\f12a"
+$fa-var-superscript: "\f12b"
+$fa-var-subscript: "\f12c"
+$fa-var-eraser: "\f12d"
+$fa-var-puzzle-piece: "\f12e"
+$fa-var-microphone: "\f130"
+$fa-var-microphone-slash: "\f131"
+$fa-var-shield: "\f132"
+$fa-var-calendar-o: "\f133"
+$fa-var-fire-extinguisher: "\f134"
+$fa-var-rocket: "\f135"
+$fa-var-maxcdn: "\f136"
+$fa-var-chevron-circle-left: "\f137"
+$fa-var-chevron-circle-right: "\f138"
+$fa-var-chevron-circle-up: "\f139"
+$fa-var-chevron-circle-down: "\f13a"
+$fa-var-html5: "\f13b"
+$fa-var-css3: "\f13c"
+$fa-var-anchor: "\f13d"
+$fa-var-unlock-alt: "\f13e"
+$fa-var-bullseye: "\f140"
+$fa-var-ellipsis-h: "\f141"
+$fa-var-ellipsis-v: "\f142"
+$fa-var-rss-square: "\f143"
+$fa-var-play-circle: "\f144"
+$fa-var-ticket: "\f145"
+$fa-var-minus-square: "\f146"
+$fa-var-minus-square-o: "\f147"
+$fa-var-level-up: "\f148"
+$fa-var-level-down: "\f149"
+$fa-var-check-square: "\f14a"
+$fa-var-pencil-square: "\f14b"
+$fa-var-external-link-square: "\f14c"
+$fa-var-share-square: "\f14d"
+$fa-var-compass: "\f14e"
+$fa-var-caret-square-o-down: "\f150"
+$fa-var-caret-square-o-up: "\f151"
+$fa-var-caret-square-o-right: "\f152"
+$fa-var-eur: "\f153"
+$fa-var-gbp: "\f154"
+$fa-var-usd: "\f155"
+$fa-var-inr: "\f156"
+$fa-var-jpy: "\f157"
+$fa-var-rub: "\f158"
+$fa-var-krw: "\f159"
+$fa-var-btc: "\f15a"
+$fa-var-file: "\f15b"
+$fa-var-file-text: "\f15c"
+$fa-var-sort-alpha-asc: "\f15d"
+$fa-var-sort-alpha-desc: "\f15e"
+$fa-var-sort-amount-asc: "\f160"
+$fa-var-sort-amount-desc: "\f161"
+$fa-var-sort-numeric-asc: "\f162"
+$fa-var-sort-numeric-desc: "\f163"
+$fa-var-thumbs-up: "\f164"
+$fa-var-thumbs-down: "\f165"
+$fa-var-youtube-square: "\f166"
+$fa-var-youtube: "\f167"
+$fa-var-xing: "\f168"
+$fa-var-xing-square: "\f169"
+$fa-var-youtube-play: "\f16a"
+$fa-var-dropbox: "\f16b"
+$fa-var-stack-overflow: "\f16c"
+$fa-var-instagram: "\f16d"
+$fa-var-flickr: "\f16e"
+$fa-var-adn: "\f170"
+$fa-var-bitbucket: "\f171"
+$fa-var-bitbucket-square: "\f172"
+$fa-var-tumblr: "\f173"
+$fa-var-tumblr-square: "\f174"
+$fa-var-long-arrow-down: "\f175"
+$fa-var-long-arrow-up: "\f176"
+$fa-var-long-arrow-left: "\f177"
+$fa-var-long-arrow-right: "\f178"
+$fa-var-apple: "\f179"
+$fa-var-windows: "\f17a"
+$fa-var-android: "\f17b"
+$fa-var-linux: "\f17c"
+$fa-var-dribbble: "\f17d"
+$fa-var-skype: "\f17e"
+$fa-var-foursquare: "\f180"
+$fa-var-trello: "\f181"
+$fa-var-female: "\f182"
+$fa-var-male: "\f183"
+$fa-var-gittip: "\f184"
+$fa-var-sun-o: "\f185"
+$fa-var-moon-o: "\f186"
+$fa-var-archive: "\f187"
+$fa-var-bug: "\f188"
+$fa-var-vk: "\f189"
+$fa-var-weibo: "\f18a"
+$fa-var-renren: "\f18b"
+$fa-var-pagelines: "\f18c"
+$fa-var-stack-exchange: "\f18d"
+$fa-var-arrow-circle-o-right: "\f18e"
+$fa-var-arrow-circle-o-left: "\f190"
+$fa-var-caret-square-o-left: "\f191"
+$fa-var-dot-circle-o: "\f192"
+$fa-var-wheelchair: "\f193"
+$fa-var-vimeo-square: "\f194"
+$fa-var-try: "\f195"
+$fa-var-plus-square-o: "\f196"
+
+
+$fa-include-css: true!default
+
+
+// standard teaser list styling
+@mixin icon-after($icon: $fa-var-long-arrow-right, $color: $blue-light)
+  &:after
+    @extend %icons-core
+    content: $icon
+    color: $color
+    display: inline-block
+    padding-left: 1em
+
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-glass:before
+    content: $fa-var-glass
+
+%fa-glass
+  &:before
+    content:  $fa-var-glass
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-music:before
+    content: $fa-var-music
+
+%fa-music
+  &:before
+    content:  $fa-var-music
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-search:before
+    content: $fa-var-search
+
+%fa-search
+  &:before
+    content:  $fa-var-search
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-envelope-o:before
+    content: $fa-var-envelope-o
+
+%fa-envelope-o
+  &:before
+    content:  $fa-var-envelope-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-heart:before
+    content: $fa-var-heart
+
+%fa-heart
+  &:before
+    content:  $fa-var-heart
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-star:before
+    content: $fa-var-star
+
+%fa-star
+  &:before
+    content:  $fa-var-star
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-star-o:before
+    content: $fa-var-star-o
+
+%fa-star-o
+  &:before
+    content:  $fa-var-star-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-user:before
+    content: $fa-var-user
+
+%fa-user
+  &:before
+    content:  $fa-var-user
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-film:before
+    content: $fa-var-film
+
+%fa-film
+  &:before
+    content:  $fa-var-film
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-th-large:before
+    content: $fa-var-th-large
+
+%fa-th-large
+  &:before
+    content:  $fa-var-th-large
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-th:before
+    content: $fa-var-th
+
+%fa-th
+  &:before
+    content:  $fa-var-th
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-th-list:before
+    content: $fa-var-th-list
+
+%fa-th-list
+  &:before
+    content:  $fa-var-th-list
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-check:before
+    content: $fa-var-check
+
+%fa-check
+  &:before
+    content:  $fa-var-check
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-times:before
+    content: $fa-var-times
+
+%fa-times
+  &:before
+    content:  $fa-var-times
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-search-plus:before
+    content: $fa-var-search-plus
+
+%fa-search-plus
+  &:before
+    content:  $fa-var-search-plus
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-search-minus:before
+    content: $fa-var-search-minus
+
+%fa-search-minus
+  &:before
+    content:  $fa-var-search-minus
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-power-off:before
+    content: $fa-var-power-off
+
+%fa-power-off
+  &:before
+    content:  $fa-var-power-off
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-signal:before
+    content: $fa-var-signal
+
+%fa-signal
+  &:before
+    content:  $fa-var-signal
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gear:before,
+  .#{$fa-css-prefix}-cog:before
+    content: $fa-var-cog
+
+%fa-cog
+  &:before
+    content:  $fa-var-cog
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-trash-o:before
+    content: $fa-var-trash-o
+
+%fa-trash-o
+  &:before
+    content:  $fa-var-trash-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-home:before
+    content: $fa-var-home
+
+%fa-home
+  &:before
+    content:  $fa-var-home
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-file-o:before
+    content: $fa-var-file-o
+
+%fa-file-o
+  &:before
+    content:  $fa-var-file-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-clock-o:before
+    content: $fa-var-clock-o
+
+%fa-clock-o
+  &:before
+    content:  $fa-var-clock-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-road:before
+    content: $fa-var-road
+
+%fa-road
+  &:before
+    content:  $fa-var-road
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-download:before
+    content: $fa-var-download
+
+%fa-download
+  &:before
+    content:  $fa-var-download
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-o-down:before
+    content: $fa-var-arrow-circle-o-down
+
+%fa-arrow-circle-o-down
+  &:before
+    content:  $fa-var-arrow-circle-o-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-o-up:before
+    content: $fa-var-arrow-circle-o-up
+
+%fa-arrow-circle-o-up
+  &:before
+    content:  $fa-var-arrow-circle-o-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-inbox:before
+    content: $fa-var-inbox
+
+%fa-inbox
+  &:before
+    content:  $fa-var-inbox
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-play-circle-o:before
+    content: $fa-var-play-circle-o
+
+%fa-play-circle-o
+  &:before
+    content:  $fa-var-play-circle-o
+
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rotate-right:before,
+  .#{$fa-css-prefix}-repeat:before
+    content: $fa-var-repeat
+
+%fa-repeat
+  &:before
+    content:  $fa-var-repeat
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-refresh:before
+    content: $fa-var-refresh
+
+%fa-refresh
+  &:before
+    content:  $fa-var-refresh
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-list-alt:before
+    content: $fa-var-list-alt
+
+%fa-list-alt
+  &:before
+    content:  $fa-var-list-alt
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-lock:before
+    content: $fa-var-lock
+
+%fa-lock
+  &:before
+    content:  $fa-var-lock
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flag:before
+    content: $fa-var-flag
+
+%fa-flag
+  &:before
+    content:  $fa-var-flag
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-headphones:before
+    content: $fa-var-headphones
+
+%fa-headphones
+  &:before
+    content:  $fa-var-headphones
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-volume-off:before
+    content: $fa-var-volume-off
+
+%fa-volume-off
+  &:before
+    content:  $fa-var-volume-off
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-volume-down:before
+    content: $fa-var-volume-down
+
+%fa-volume-down
+  &:before
+    content:  $fa-var-volume-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-volume-up:before
+    content: $fa-var-volume-up
+
+%fa-volume-up
+  &:before
+    content:  $fa-var-volume-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-qrcode:before
+    content: $fa-var-qrcode
+
+%fa-qrcode
+  &:before
+    content:  $fa-var-qrcode
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-barcode:before
+    content: $fa-var-barcode
+
+%fa-barcode
+  &:before
+    content:  $fa-var-barcode
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tag:before
+    content: $fa-var-tag
+
+%fa-tag
+  &:before
+    content:  $fa-var-tag
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tags:before
+    content: $fa-var-tags
+
+%fa-tags
+  &:before
+    content:  $fa-var-tags
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-book:before
+    content: $fa-var-book
+
+%fa-book
+  &:before
+    content:  $fa-var-book
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bookmark:before
+    content: $fa-var-bookmark
+
+%fa-bookmark
+  &:before
+    content:  $fa-var-bookmark
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-print:before
+    content: $fa-var-print
+
+%fa-print
+  &:before
+    content:  $fa-var-print
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-camera:before
+    content: $fa-var-camera
+
+%fa-camera
+  &:before
+    content:  $fa-var-camera
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-font:before
+    content: $fa-var-font
+
+%fa-font
+  &:before
+    content:  $fa-var-font
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bold:before
+    content: $fa-var-bold
+
+%fa-bold
+  &:before
+    content:  $fa-var-bold
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-italic:before
+    content: $fa-var-italic
+
+%fa-italic
+  &:before
+    content:  $fa-var-italic
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-text-height:before
+    content: $fa-var-text-height
+
+%fa-text-height
+  &:before
+    content:  $fa-var-text-height
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-text-width:before
+    content: $fa-var-text-width
+
+%fa-text-width
+  &:before
+    content:  $fa-var-text-width
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-align-left:before
+    content: $fa-var-align-left
+
+%fa-align-left
+  &:before
+    content:  $fa-var-align-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-align-center:before
+    content: $fa-var-align-center
+
+%fa-align-center
+  &:before
+    content:  $fa-var-align-center
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-align-right:before
+    content: $fa-var-align-right
+
+%fa-align-right
+  &:before
+    content:  $fa-var-align-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-align-justify:before
+    content: $fa-var-align-justify
+
+%fa-align-justify
+  &:before
+    content:  $fa-var-align-justify
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-list:before
+    content: $fa-var-list
+
+%fa-list
+  &:before
+    content:  $fa-var-list
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dedent:before,
+  .#{$fa-css-prefix}-outdent:before
+    content: $fa-var-outdent
+
+%fa-outdent
+  &:before
+    content:  $fa-var-outdent
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-indent:before
+    content: $fa-var-indent
+
+%fa-indent
+  &:before
+    content:  $fa-var-indent
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-video-camera:before
+    content: $fa-var-video-camera
+
+%fa-video-camera
+  &:before
+    content:  $fa-var-video-camera
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-picture-o:before
+    content: $fa-var-picture-o
+
+%fa-picture-o
+  &:before
+    content:  $fa-var-picture-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pencil:before
+    content: $fa-var-pencil
+
+%fa-pencil
+  &:before
+    content:  $fa-var-pencil
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-map-marker:before
+    content: $fa-var-map-marker
+
+%fa-map-marker
+  &:before
+    content:  $fa-var-map-marker
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-adjust:before
+    content: $fa-var-adjust
+
+%fa-adjust
+  &:before
+    content:  $fa-var-adjust
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tint:before
+    content: $fa-var-tint
+
+%fa-tint
+  &:before
+    content:  $fa-var-tint
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-edit:before,
+  .#{$fa-css-prefix}-pencil-square-o:before
+    content: $fa-var-pencil-square-o
+
+%fa-pencil-square-o
+  &:before
+    content:  $fa-var-pencil-square-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-share-square-o:before
+    content: $fa-var-share-square-o
+
+%fa-share-square-o
+  &:before
+    content:  $fa-var-share-square-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-check-square-o:before
+    content: $fa-var-check-square-o
+
+%fa-check-square-o
+  &:before
+    content:  $fa-var-check-square-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrows:before
+    content: $fa-var-arrows
+
+%fa-arrows
+  &:before
+    content:  $fa-var-arrows
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-step-backward:before
+    content: $fa-var-step-backward
+
+%fa-step-backward
+  &:before
+    content:  $fa-var-step-backward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-fast-backward:before
+    content: $fa-var-fast-backward
+
+%fa-fast-backward
+  &:before
+    content:  $fa-var-fast-backward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-backward:before
+    content: $fa-var-backward
+
+%fa-backward
+  &:before
+    content:  $fa-var-backward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-play:before
+    content: $fa-var-play
+
+%fa-play
+  &:before
+    content:  $fa-var-play
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pause:before
+    content: $fa-var-pause
+
+%fa-pause
+  &:before
+    content:  $fa-var-pause
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-stop:before
+    content: $fa-var-stop
+
+%fa-stop
+  &:before
+    content:  $fa-var-stop
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-forward:before
+    content: $fa-var-forward
+
+%fa-forward
+  &:before
+    content:  $fa-var-forward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-fast-forward:before
+    content: $fa-var-fast-forward
+
+%fa-fast-forward
+  &:before
+    content:  $fa-var-fast-forward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-step-forward:before
+    content: $fa-var-step-forward
+
+%fa-step-forward
+  &:before
+    content:  $fa-var-step-forward
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-eject:before
+    content: $fa-var-eject
+
+%fa-eject
+  &:before
+    content:  $fa-var-eject
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-left:before
+    content: $fa-var-chevron-left
+
+%fa-chevron-left
+  &:before
+    content:  $fa-var-chevron-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-right:before
+    content: $fa-var-chevron-right
+
+%fa-chevron-right
+  &:before
+    content:  $fa-var-chevron-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-plus-circle:before
+    content: $fa-var-plus-circle
+
+%fa-plus-circle
+  &:before
+    content:  $fa-var-plus-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-minus-circle:before
+    content: $fa-var-minus-circle
+
+%fa-minus-circle
+  &:before
+    content:  $fa-var-minus-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-times-circle:before
+    content: $fa-var-times-circle
+
+%fa-times-circle
+  &:before
+    content:  $fa-var-times-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-check-circle:before
+    content: $fa-var-check-circle
+
+%fa-check-circle
+  &:before
+    content:  $fa-var-check-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-question-circle:before
+    content: $fa-var-question-circle
+
+%fa-question-circle
+  &:before
+    content:  $fa-var-question-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-info-circle:before
+    content: $fa-var-info-circle
+
+%fa-info-circle
+  &:before
+    content:  $fa-var-info-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-crosshairs:before
+    content: $fa-var-crosshairs
+
+%fa-crosshairs
+  &:before
+    content:  $fa-var-crosshairs
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-times-circle-o:before
+    content: $fa-var-times-circle-o
+
+%fa-times-circle-o
+  &:before
+    content:  $fa-var-times-circle-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-check-circle-o:before
+    content: $fa-var-check-circle-o
+
+%fa-check-circle-o
+  &:before
+    content:  $fa-var-check-circle-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ban:before
+    content: $fa-var-ban
+
+%fa-ban
+  &:before
+    content:  $fa-var-ban
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-left:before
+    content: $fa-var-arrow-left
+
+%fa-arrow-left
+  &:before
+    content:  $fa-var-arrow-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-right:before
+    content: $fa-var-arrow-right
+
+%fa-arrow-right
+  &:before
+    content:  $fa-var-arrow-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-up:before
+    content: $fa-var-arrow-up
+
+%fa-arrow-up
+  &:before
+    content:  $fa-var-arrow-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-down:before
+    content: $fa-var-arrow-down
+
+%fa-arrow-down
+  &:before
+    content:  $fa-var-arrow-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-mail-forward:before,
+  .#{$fa-css-prefix}-share:before
+    content: $fa-var-share
+
+%fa-share
+  &:before
+    content:  $fa-var-share
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-expand:before
+    content: $fa-var-expand
+
+%fa-expand
+  &:before
+    content:  $fa-var-expand
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-compress:before
+    content: $fa-var-compress
+
+%fa-compress
+  &:before
+    content:  $fa-var-compress
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-plus:before
+    content: $fa-var-plus
+
+%fa-plus
+  &:before
+    content:  $fa-var-plus
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-minus:before
+    content: $fa-var-minus
+
+%fa-minus
+  &:before
+    content:  $fa-var-minus
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-asterisk:before
+    content: $fa-var-asterisk
+
+%fa-asterisk
+  &:before
+    content:  $fa-var-asterisk
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-exclamation-circle:before
+    content: $fa-var-exclamation-circle
+
+%fa-exclamation-circle
+  &:before
+    content:  $fa-var-exclamation-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gift:before
+    content: $fa-var-gift
+
+%fa-gift
+  &:before
+    content:  $fa-var-gift
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-leaf:before
+    content: $fa-var-leaf
+
+%fa-leaf
+  &:before
+    content:  $fa-var-leaf
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-fire:before
+    content: $fa-var-fire
+
+%fa-fire
+  &:before
+    content:  $fa-var-fire
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-eye:before
+    content: $fa-var-eye
+
+%fa-eye
+  &:before
+    content:  $fa-var-eye
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-eye-slash:before
+    content: $fa-var-eye-slash
+
+%fa-eye-slash
+  &:before
+    content:  $fa-var-eye-slash
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-warning:before,
+  .#{$fa-css-prefix}-exclamation-triangle:before
+    content: $fa-var-exclamation-triangle
+
+%fa-exclamation-triangle
+  &:before
+    content:  $fa-var-exclamation-triangle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-plane:before
+    content: $fa-var-plane
+
+%fa-plane
+  &:before
+    content:  $fa-var-plane
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-calendar:before
+    content: $fa-var-calendar
+
+%fa-calendar
+  &:before
+    content:  $fa-var-calendar
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-random:before
+    content: $fa-var-random
+
+%fa-random
+  &:before
+    content:  $fa-var-random
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-comment:before
+    content: $fa-var-comment
+
+%fa-comment
+  &:before
+    content:  $fa-var-comment
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-magnet:before
+    content: $fa-var-magnet
+
+%fa-magnet
+  &:before
+    content:  $fa-var-magnet
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-up:before
+    content: $fa-var-chevron-up
+
+%fa-chevron-up
+  &:before
+    content:  $fa-var-chevron-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-down:before
+    content: $fa-var-chevron-down
+
+%fa-chevron-down
+  &:before
+    content:  $fa-var-chevron-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-retweet:before
+    content: $fa-var-retweet
+
+%fa-retweet
+  &:before
+    content:  $fa-var-retweet
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-shopping-cart:before
+    content: $fa-var-shopping-cart
+
+%fa-shopping-cart
+  &:before
+    content:  $fa-var-shopping-cart
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-folder:before
+    content: $fa-var-folder
+
+%fa-folder
+  &:before
+    content:  $fa-var-folder
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-folder-open:before
+    content: $fa-var-folder-open
+
+%fa-folder-open
+  &:before
+    content:  $fa-var-folder-open
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrows-v:before
+    content: $fa-var-arrows-v
+
+%fa-arrows-v
+  &:before
+    content:  $fa-var-arrows-v
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrows-h:before
+    content: $fa-var-arrows-h
+
+%fa-arrows-h
+  &:before
+    content:  $fa-var-arrows-h
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bar-chart-o:before
+    content: $fa-var-bar-chart-o
+
+%fa-bar-chart-o
+  &:before
+    content:  $fa-var-bar-chart-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-twitter-square:before
+    content: $fa-var-twitter-square
+
+%fa-twitter-square
+  &:before
+    content:  $fa-var-twitter-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-facebook-square:before
+    content: $fa-var-facebook-square
+
+%fa-facebook-square
+  &:before
+    content:  $fa-var-facebook-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-camera-retro:before
+    content: $fa-var-camera-retro
+
+%fa-camera-retro
+  &:before
+    content:  $fa-var-camera-retro
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-key:before
+    content: $fa-var-key
+
+%fa-key
+  &:before
+    content:  $fa-var-key
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gears:before,
+  .#{$fa-css-prefix}-cogs:before
+    content: $fa-var-cogs
+
+%fa-cogs
+  &:before
+    content:  $fa-var-cogs
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-comments:before
+    content: $fa-var-comments
+
+%fa-comments
+  &:before
+    content:  $fa-var-comments
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-thumbs-o-up:before
+    content: $fa-var-thumbs-o-up
+
+%fa-thumbs-o-up
+  &:before
+    content:  $fa-var-thumbs-o-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-thumbs-o-down:before
+    content: $fa-var-thumbs-o-down
+
+%fa-thumbs-o-down
+  &:before
+    content:  $fa-var-thumbs-o-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-star-half:before
+    content: $fa-var-star-half
+
+%fa-star-half
+  &:before
+    content:  $fa-var-star-half
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-heart-o:before
+    content: $fa-var-heart-o
+
+%fa-heart-o
+  &:before
+    content:  $fa-var-heart-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sign-out:before
+    content: $fa-var-sign-out
+
+%fa-sign-out
+  &:before
+    content:  $fa-var-sign-out
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-linkedin-square:before
+    content: $fa-var-linkedin-square
+
+%fa-linkedin-square
+  &:before
+    content:  $fa-var-linkedin-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-thumb-tack:before
+    content: $fa-var-thumb-tack
+
+%fa-thumb-tack
+  &:before
+    content:  $fa-var-thumb-tack
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-external-link:before
+    content: $fa-var-external-link
+
+%fa-external-link
+  &:before
+    content:  $fa-var-external-link
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sign-in:before
+    content: $fa-var-sign-in
+
+%fa-sign-in
+  &:before
+    content:  $fa-var-sign-in
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-trophy:before
+    content: $fa-var-trophy
+
+%fa-trophy
+  &:before
+    content:  $fa-var-trophy
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-github-square:before
+    content: $fa-var-github-square
+
+%fa-github-square
+  &:before
+    content:  $fa-var-github-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-upload:before
+    content: $fa-var-upload
+
+%fa-upload
+  &:before
+    content:  $fa-var-upload
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-lemon-o:before
+    content: $fa-var-lemon-o
+
+%fa-lemon-o
+  &:before
+    content:  $fa-var-lemon-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-phone:before
+    content: $fa-var-phone
+
+%fa-phone
+  &:before
+    content:  $fa-var-phone
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-square-o:before
+    content: $fa-var-square-o
+
+%fa-square-o
+  &:before
+    content:  $fa-var-square-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bookmark-o:before
+    content: $fa-var-bookmark-o
+
+%fa-bookmark-o
+  &:before
+    content:  $fa-var-bookmark-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-phone-square:before
+    content: $fa-var-phone-square
+
+%fa-phone-square
+  &:before
+    content:  $fa-var-phone-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-twitter:before
+    content: $fa-var-twitter
+
+%fa-twitter
+  &:before
+    content:  $fa-var-twitter
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-facebook:before
+    content: $fa-var-facebook
+
+%fa-facebook
+  &:before
+    content:  $fa-var-facebook
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-github:before
+    content: $fa-var-github
+
+%fa-github
+  &:before
+    content:  $fa-var-github
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-unlock:before
+    content: $fa-var-unlock
+
+%fa-unlock
+  &:before
+    content:  $fa-var-unlock
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-credit-card:before
+    content: $fa-var-credit-card
+
+%fa-credit-card
+  &:before
+    content:  $fa-var-credit-card
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rss:before
+    content: $fa-var-rss
+
+%fa-rss
+  &:before
+    content:  $fa-var-rss
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hdd-o:before
+    content: $fa-var-hdd-o
+
+%fa-hdd-o
+  &:before
+    content:  $fa-var-hdd-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bullhorn:before
+    content: $fa-var-bullhorn
+
+%fa-bullhorn
+  &:before
+    content:  $fa-var-bullhorn
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bell:before
+    content: $fa-var-bell
+
+%fa-bell
+  &:before
+    content:  $fa-var-bell
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-certificate:before
+    content: $fa-var-certificate
+
+%fa-certificate
+  &:before
+    content:  $fa-var-certificate
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hand-o-right:before
+    content: $fa-var-hand-o-right
+
+%fa-hand-o-right
+  &:before
+    content:  $fa-var-hand-o-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hand-o-left:before
+    content: $fa-var-hand-o-left
+
+%fa-hand-o-left
+  &:before
+    content:  $fa-var-hand-o-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hand-o-up:before
+    content: $fa-var-hand-o-up
+
+%fa-hand-o-up
+  &:before
+    content:  $fa-var-hand-o-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hand-o-down:before
+    content: $fa-var-hand-o-down
+
+%fa-hand-o-down
+  &:before
+    content:  $fa-var-hand-o-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-left:before
+    content: $fa-var-arrow-circle-left
+
+%fa-arrow-circle-left
+  &:before
+    content:  $fa-var-arrow-circle-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-right:before
+    content: $fa-var-arrow-circle-right
+
+%fa-arrow-circle-right
+  &:before
+    content:  $fa-var-arrow-circle-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-up:before
+    content: $fa-var-arrow-circle-up
+
+%fa-arrow-circle-up
+  &:before
+    content:  $fa-var-arrow-circle-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-down:before
+    content: $fa-var-arrow-circle-down
+
+%fa-arrow-circle-down
+  &:before
+    content:  $fa-var-arrow-circle-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-globe:before
+    content: $fa-var-globe
+
+%fa-globe
+  &:before
+    content:  $fa-var-globe
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-wrench:before
+    content: $fa-var-wrench
+
+%fa-wrench
+  &:before
+    content:  $fa-var-wrench
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tasks:before
+    content: $fa-var-tasks
+
+%fa-tasks
+  &:before
+    content:  $fa-var-tasks
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-filter:before
+    content: $fa-var-filter
+
+%fa-filter
+  &:before
+    content:  $fa-var-filter
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-briefcase:before
+    content: $fa-var-briefcase
+
+%fa-briefcase
+  &:before
+    content:  $fa-var-briefcase
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrows-alt:before
+    content: $fa-var-arrows-alt
+
+%fa-arrows-alt
+  &:before
+    content:  $fa-var-arrows-alt
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-group:before,
+  .#{$fa-css-prefix}-users:before
+    content: $fa-var-users
+
+%fa-users
+  &:before
+    content:  $fa-var-users
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chain:before,
+  .#{$fa-css-prefix}-link:before
+    content: $fa-var-link
+
+%fa-link
+  &:before
+    content:  $fa-var-link
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cloud:before
+    content: $fa-var-cloud
+
+%fa-cloud
+  &:before
+    content:  $fa-var-cloud
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flask:before
+    content: $fa-var-flask
+
+%fa-flask
+  &:before
+    content:  $fa-var-flask
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cut:before,
+  .#{$fa-css-prefix}-scissors:before
+    content: $fa-var-scissors
+
+%fa-scissors
+  &:before
+    content:  $fa-var-scissors
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-copy:before,
+  .#{$fa-css-prefix}-files-o:before
+    content: $fa-var-files-o
+
+%fa-files-o
+  &:before
+    content:  $fa-var-files-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-paperclip:before
+    content: $fa-var-paperclip
+
+%fa-paperclip
+  &:before
+    content:  $fa-var-paperclip
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-save:before,
+  .#{$fa-css-prefix}-floppy-o:before
+    content: $fa-var-floppy-o
+
+%fa-floppy-o
+  &:before
+    content:  $fa-var-floppy-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-square:before
+    content: $fa-var-square
+
+%fa-square
+  &:before
+    content:  $fa-var-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bars:before
+    content: $fa-var-bars
+
+%fa-bars
+  &:before
+    content:  $fa-var-bars
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-list-ul:before
+    content: $fa-var-list-ul
+
+%fa-list-ul
+  &:before
+    content:  $fa-var-list-ul
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-list-ol:before
+    content: $fa-var-list-ol
+
+%fa-list-ol
+  &:before
+    content:  $fa-var-list-ol
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-strikethrough:before
+    content: $fa-var-strikethrough
+
+%fa-strikethrough
+  &:before
+    content:  $fa-var-strikethrough
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-underline:before
+    content: $fa-var-underline
+
+%fa-underline
+  &:before
+    content:  $fa-var-underline
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-table:before
+    content: $fa-var-table
+
+%fa-table
+  &:before
+    content:  $fa-var-table
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-magic:before
+    content: $fa-var-magic
+
+%fa-magic
+  &:before
+    content:  $fa-var-magic
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-truck:before
+    content: $fa-var-truck
+
+%fa-truck
+  &:before
+    content:  $fa-var-truck
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pinterest:before
+    content: $fa-var-pinterest
+
+%fa-pinterest
+  &:before
+    content:  $fa-var-pinterest
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pinterest-square:before
+    content: $fa-var-pinterest-square
+
+%fa-pinterest-square
+  &:before
+    content:  $fa-var-pinterest-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-google-plus-square:before
+    content: $fa-var-google-plus-square
+
+%fa-google-plus-square
+  &:before
+    content:  $fa-var-google-plus-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-google-plus:before
+    content: $fa-var-google-plus
+
+%fa-google-plus
+  &:before
+    content:  $fa-var-google-plus
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-money:before
+    content: $fa-var-money
+
+%fa-money
+  &:before
+    content:  $fa-var-money
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-caret-down:before
+    content: $fa-var-caret-down
+
+%fa-caret-down
+  &:before
+    content:  $fa-var-caret-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-caret-up:before
+    content: $fa-var-caret-up
+
+%fa-caret-up
+  &:before
+    content:  $fa-var-caret-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-caret-left:before
+    content: $fa-var-caret-left
+
+%fa-caret-left
+  &:before
+    content:  $fa-var-caret-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-caret-right:before
+    content: $fa-var-caret-right
+
+%fa-caret-right
+  &:before
+    content:  $fa-var-caret-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-columns:before
+    content: $fa-var-columns
+
+%fa-columns
+  &:before
+    content:  $fa-var-columns
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-unsorted:before,
+  .#{$fa-css-prefix}-sort:before
+    content: $fa-var-sort
+
+%fa-sort
+  &:before
+    content:  $fa-var-sort
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-down:before,
+  .#{$fa-css-prefix}-sort-asc:before
+    content: $fa-var-sort-asc
+
+%fa-sort-asc
+  &:before
+    content:  $fa-var-sort-asc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-up:before,
+  .#{$fa-css-prefix}-sort-desc:before
+    content: $fa-var-sort-desc
+
+%fa-sort-desc
+  &:before
+    content:  $fa-var-sort-desc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-envelope:before
+    content: $fa-var-envelope
+
+%fa-envelope
+  &:before
+    content:  $fa-var-envelope
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-linkedin:before
+    content: $fa-var-linkedin
+
+%fa-linkedin
+  &:before
+    content:  $fa-var-linkedin
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rotate-left:before,
+  .#{$fa-css-prefix}-undo:before
+    content: $fa-var-undo
+
+%fa-undo
+  &:before
+    content:  $fa-var-undo
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-legal:before,
+  .#{$fa-css-prefix}-gavel:before
+    content: $fa-var-gavel
+
+%fa-gavel
+  &:before
+    content:  $fa-var-gavel
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dashboard:before,
+  .#{$fa-css-prefix}-tachometer:before
+    content: $fa-var-tachometer
+
+%fa-tachometer
+  &:before
+    content:  $fa-var-tachometer
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-comment-o:before
+    content: $fa-var-comment-o
+
+%fa-comment-o
+  &:before
+    content:  $fa-var-comment-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-comments-o:before
+    content: $fa-var-comments-o
+
+%fa-comments-o
+  &:before
+    content:  $fa-var-comments-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flash:before,
+  .#{$fa-css-prefix}-bolt:before
+    content: $fa-var-bolt
+
+%fa-bolt
+  &:before
+    content:  $fa-var-bolt
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sitemap:before
+    content: $fa-var-sitemap
+
+%fa-sitemap
+  &:before
+    content:  $fa-var-sitemap
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-umbrella:before
+    content: $fa-var-umbrella
+
+%fa-umbrella
+  &:before
+    content:  $fa-var-umbrella
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-paste:before,
+  .#{$fa-css-prefix}-clipboard:before
+    content: $fa-var-clipboard
+
+%fa-clipboard
+  &:before
+    content:  $fa-var-clipboard
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-lightbulb-o:before
+    content: $fa-var-lightbulb-o
+
+%fa-lightbulb-o
+  &:before
+    content:  $fa-var-lightbulb-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-exchange:before
+    content: $fa-var-exchange
+
+%fa-exchange
+  &:before
+    content:  $fa-var-exchange
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cloud-download:before
+    content: $fa-var-cloud-download
+
+%fa-cloud-download
+  &:before
+    content:  $fa-var-cloud-download
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cloud-upload:before
+    content: $fa-var-cloud-upload
+
+%fa-cloud-upload
+  &:before
+    content:  $fa-var-cloud-upload
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-user-md:before
+    content: $fa-var-user-md
+
+%fa-user-md
+  &:before
+    content:  $fa-var-user-md
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-stethoscope:before
+    content: $fa-var-stethoscope
+
+%fa-stethoscope
+  &:before
+    content:  $fa-var-stethoscope
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-suitcase:before
+    content: $fa-var-suitcase
+
+%fa-suitcase
+  &:before
+    content:  $fa-var-suitcase
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bell-o:before
+    content: $fa-var-bell-o
+
+%fa-bell-o
+  &:before
+    content:  $fa-var-bell-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-coffee:before
+    content: $fa-var-coffee
+
+%fa-coffee
+  &:before
+    content:  $fa-var-coffee
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cutlery:before
+    content: $fa-var-cutlery
+
+%fa-cutlery
+  &:before
+    content:  $fa-var-cutlery
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-file-text-o:before
+    content: $fa-var-file-text-o
+
+%fa-file-text-o
+  &:before
+    content:  $fa-var-file-text-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-building-o:before
+    content: $fa-var-building-o
+
+%fa-building-o
+  &:before
+    content:  $fa-var-building-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-hospital-o:before
+    content: $fa-var-hospital-o
+
+%fa-hospital-o
+  &:before
+    content:  $fa-var-hospital-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ambulance:before
+    content: $fa-var-ambulance
+
+%fa-ambulance
+  &:before
+    content:  $fa-var-ambulance
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-medkit:before
+    content: $fa-var-medkit
+
+%fa-medkit
+  &:before
+    content:  $fa-var-medkit
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-fighter-jet:before
+    content: $fa-var-fighter-jet
+
+%fa-fighter-jet
+  &:before
+    content:  $fa-var-fighter-jet
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-beer:before
+    content: $fa-var-beer
+
+%fa-beer
+  &:before
+    content:  $fa-var-beer
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-h-square:before
+    content: $fa-var-h-square
+
+%fa-h-square
+  &:before
+    content:  $fa-var-h-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-plus-square:before
+    content: $fa-var-plus-square
+
+%fa-plus-square
+  &:before
+    content:  $fa-var-plus-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-double-left:before
+    content: $fa-var-angle-double-left
+
+%fa-angle-double-left
+  &:before
+    content:  $fa-var-angle-double-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-double-right:before
+    content: $fa-var-angle-double-right
+
+%fa-angle-double-right
+  &:before
+    content:  $fa-var-angle-double-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-double-up:before
+    content: $fa-var-angle-double-up
+
+%fa-angle-double-up
+  &:before
+    content:  $fa-var-angle-double-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-double-down:before
+    content: $fa-var-angle-double-down
+
+%fa-angle-double-down
+  &:before
+    content:  $fa-var-angle-double-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-left:before
+    content: $fa-var-angle-left
+
+%fa-angle-left
+  &:before
+    content:  $fa-var-angle-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-right:before
+    content: $fa-var-angle-right
+
+%fa-angle-right
+  &:before
+    content:  $fa-var-angle-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-up:before
+    content: $fa-var-angle-up
+
+%fa-angle-up
+  &:before
+    content:  $fa-var-angle-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-angle-down:before
+    content: $fa-var-angle-down
+
+%fa-angle-down
+  &:before
+    content:  $fa-var-angle-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-desktop:before
+    content: $fa-var-desktop
+
+%fa-desktop
+  &:before
+    content:  $fa-var-desktop
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-laptop:before
+    content: $fa-var-laptop
+
+%fa-laptop
+  &:before
+    content:  $fa-var-laptop
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tablet:before
+    content: $fa-var-tablet
+
+%fa-tablet
+  &:before
+    content:  $fa-var-tablet
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-mobile-phone:before,
+  .#{$fa-css-prefix}-mobile:before
+    content: $fa-var-mobile
+
+%fa-mobile
+  &:before
+    content:  $fa-var-mobile
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-circle-o:before
+    content: $fa-var-circle-o
+
+%fa-circle-o
+  &:before
+    content:  $fa-var-circle-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-quote-left:before
+    content: $fa-var-quote-left
+
+%fa-quote-left
+  &:before
+    content:  $fa-var-quote-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-quote-right:before
+    content: $fa-var-quote-right
+
+%fa-quote-right
+  &:before
+    content:  $fa-var-quote-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-spinner:before
+    content: $fa-var-spinner
+
+%fa-spinner
+  &:before
+    content:  $fa-var-spinner
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-circle:before
+    content: $fa-var-circle
+
+%fa-circle
+  &:before
+    content:  $fa-var-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-mail-reply:before,
+  .#{$fa-css-prefix}-reply:before
+    content: $fa-var-reply
+
+%fa-reply
+  &:before
+    content:  $fa-var-reply
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-github-alt:before
+    content: $fa-var-github-alt
+
+%fa-github-alt
+  &:before
+    content:  $fa-var-github-alt
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-folder-o:before
+    content: $fa-var-folder-o
+
+%fa-folder-o
+  &:before
+    content:  $fa-var-folder-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-folder-open-o:before
+    content: $fa-var-folder-open-o
+
+%fa-folder-open-o
+  &:before
+    content:  $fa-var-folder-open-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-smile-o:before
+    content: $fa-var-smile-o
+
+%fa-smile-o
+  &:before
+    content:  $fa-var-smile-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-frown-o:before
+    content: $fa-var-frown-o
+
+%fa-frown-o
+  &:before
+    content:  $fa-var-frown-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-meh-o:before
+    content: $fa-var-meh-o
+
+%fa-meh-o
+  &:before
+    content:  $fa-var-meh-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gamepad:before
+    content: $fa-var-gamepad
+
+%fa-gamepad
+  &:before
+    content:  $fa-var-gamepad
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-keyboard-o:before
+    content: $fa-var-keyboard-o
+
+%fa-keyboard-o
+  &:before
+    content:  $fa-var-keyboard-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flag-o:before
+    content: $fa-var-flag-o
+
+%fa-flag-o
+  &:before
+    content:  $fa-var-flag-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flag-checkered:before
+    content: $fa-var-flag-checkered
+
+%fa-flag-checkered
+  &:before
+    content:  $fa-var-flag-checkered
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-terminal:before
+    content: $fa-var-terminal
+
+%fa-terminal
+  &:before
+    content:  $fa-var-terminal
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-code:before
+    content: $fa-var-code
+
+%fa-code
+  &:before
+    content:  $fa-var-code
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-reply-all:before
+    content: $fa-var-reply-all
+
+%fa-reply-all
+  &:before
+    content:  $fa-var-reply-all
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-mail-reply-all:before
+    content: $fa-var-mail-reply-all
+
+%fa-mail-reply-all
+  &:before
+    content:  $fa-var-mail-reply-all
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-star-half-empty:before,
+  .#{$fa-css-prefix}-star-half-full:before,
+  .#{$fa-css-prefix}-star-half-o:before
+    content: $fa-var-star-half-o
+
+%fa-star-half-o
+  &:before
+    content:  $fa-var-star-half-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-location-arrow:before
+    content: $fa-var-location-arrow
+
+%fa-location-arrow
+  &:before
+    content:  $fa-var-location-arrow
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-crop:before
+    content: $fa-var-crop
+
+%fa-crop
+  &:before
+    content:  $fa-var-crop
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-code-fork:before
+    content: $fa-var-code-fork
+
+%fa-code-fork
+  &:before
+    content:  $fa-var-code-fork
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-unlink:before,
+  .#{$fa-css-prefix}-chain-broken:before
+    content: $fa-var-chain-broken
+
+%fa-chain-broken
+  &:before
+    content:  $fa-var-chain-broken
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-question:before
+    content: $fa-var-question
+
+%fa-question
+  &:before
+    content:  $fa-var-question
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-info:before
+    content: $fa-var-info
+
+%fa-info
+  &:before
+    content:  $fa-var-info
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-exclamation:before
+    content: $fa-var-exclamation
+
+%fa-exclamation
+  &:before
+    content:  $fa-var-exclamation
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-superscript:before
+    content: $fa-var-superscript
+
+%fa-superscript
+  &:before
+    content:  $fa-var-superscript
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-subscript:before
+    content: $fa-var-subscript
+
+%fa-subscript
+  &:before
+    content:  $fa-var-subscript
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-eraser:before
+    content: $fa-var-eraser
+
+%fa-eraser
+  &:before
+    content:  $fa-var-eraser
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-puzzle-piece:before
+    content: $fa-var-puzzle-piece
+
+%fa-puzzle-piece
+  &:before
+    content:  $fa-var-puzzle-piece
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-microphone:before
+    content: $fa-var-microphone
+
+%fa-microphone
+  &:before
+    content:  $fa-var-microphone
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-microphone-slash:before
+    content: $fa-var-microphone-slash
+
+%fa-microphone-slash
+  &:before
+    content:  $fa-var-microphone-slash
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-shield:before
+    content: $fa-var-shield
+
+%fa-shield
+  &:before
+    content:  $fa-var-shield
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-calendar-o:before
+    content: $fa-var-calendar-o
+
+%fa-calendar-o
+  &:before
+    content:  $fa-var-calendar-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-fire-extinguisher:before
+    content: $fa-var-fire-extinguisher
+
+%fa-fire-extinguisher
+  &:before
+    content:  $fa-var-fire-extinguisher
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rocket:before
+    content: $fa-var-rocket
+
+%fa-rocket
+  &:before
+    content:  $fa-var-rocket
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-maxcdn:before
+    content: $fa-var-maxcdn
+
+%fa-maxcdn
+  &:before
+    content:  $fa-var-maxcdn
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-circle-left:before
+    content: $fa-var-chevron-circle-left
+
+%fa-chevron-circle-left
+  &:before
+    content:  $fa-var-chevron-circle-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-circle-right:before
+    content: $fa-var-chevron-circle-right
+
+%fa-chevron-circle-right
+  &:before
+    content:  $fa-var-chevron-circle-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-circle-up:before
+    content: $fa-var-chevron-circle-up
+
+%fa-chevron-circle-up
+  &:before
+    content:  $fa-var-chevron-circle-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-chevron-circle-down:before
+    content: $fa-var-chevron-circle-down
+
+%fa-chevron-circle-down
+  &:before
+    content:  $fa-var-chevron-circle-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-html5:before
+    content: $fa-var-html5
+
+%fa-html5
+  &:before
+    content:  $fa-var-html5
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-css3:before
+    content: $fa-var-css3
+
+%fa-css3
+  &:before
+    content:  $fa-var-css3
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-anchor:before
+    content: $fa-var-anchor
+
+%fa-anchor
+  &:before
+    content:  $fa-var-anchor
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-unlock-alt:before
+    content: $fa-var-unlock-alt
+
+%fa-unlock-alt
+  &:before
+    content:  $fa-var-unlock-alt
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bullseye:before
+    content: $fa-var-bullseye
+
+%fa-bullseye
+  &:before
+    content:  $fa-var-bullseye
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ellipsis-h:before
+    content: $fa-var-ellipsis-h
+
+%fa-ellipsis-h
+  &:before
+    content:  $fa-var-ellipsis-h
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ellipsis-v:before
+    content: $fa-var-ellipsis-v
+
+%fa-ellipsis-v
+  &:before
+    content:  $fa-var-ellipsis-v
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rss-square:before
+    content: $fa-var-rss-square
+
+%fa-rss-square
+  &:before
+    content:  $fa-var-rss-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-play-circle:before
+    content: $fa-var-play-circle
+
+%fa-play-circle
+  &:before
+    content:  $fa-var-play-circle
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ticket:before
+    content: $fa-var-ticket
+
+%fa-ticket
+  &:before
+    content:  $fa-var-ticket
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-minus-square:before
+    content: $fa-var-minus-square
+
+%fa-minus-square
+  &:before
+    content:  $fa-var-minus-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-minus-square-o:before
+    content: $fa-var-minus-square-o
+
+%fa-minus-square-o
+  &:before
+    content:  $fa-var-minus-square-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-level-up:before
+    content: $fa-var-level-up
+
+%fa-level-up
+  &:before
+    content:  $fa-var-level-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-level-down:before
+    content: $fa-var-level-down
+
+%fa-level-down
+  &:before
+    content:  $fa-var-level-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-check-square:before
+    content: $fa-var-check-square
+
+%fa-check-square
+  &:before
+    content:  $fa-var-check-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pencil-square:before
+    content: $fa-var-pencil-square
+
+%fa-pencil-square
+  &:before
+    content:  $fa-var-pencil-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-external-link-square:before
+    content: $fa-var-external-link-square
+
+%fa-external-link-square
+  &:before
+    content:  $fa-var-external-link-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-share-square:before
+    content: $fa-var-share-square
+
+%fa-share-square
+  &:before
+    content:  $fa-var-share-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-compass:before
+    content: $fa-var-compass
+
+%fa-compass
+  &:before
+    content:  $fa-var-compass
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-toggle-down:before,
+  .#{$fa-css-prefix}-caret-square-o-down:before
+    content: $fa-var-caret-square-o-down
+
+%fa-caret-square-o-down
+  &:before
+    content:  $fa-var-caret-square-o-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-toggle-up:before,
+  .#{$fa-css-prefix}-caret-square-o-up:before
+    content: $fa-var-caret-square-o-up
+
+%fa-caret-square-o-up
+  &:before
+    content:  $fa-var-caret-square-o-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-toggle-right:before,
+  .#{$fa-css-prefix}-caret-square-o-right:before
+    content: $fa-var-caret-square-o-right
+
+%fa-caret-square-o-right
+  &:before
+    content:  $fa-var-caret-square-o-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-euro:before,
+  .#{$fa-css-prefix}-eur:before
+    content: $fa-var-eur
+
+%fa-eur
+  &:before
+    content:  $fa-var-eur
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gbp:before
+    content: $fa-var-gbp
+
+%fa-gbp
+  &:before
+    content:  $fa-var-gbp
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dollar:before,
+  .#{$fa-css-prefix}-usd:before
+    content: $fa-var-usd
+
+%fa-usd
+  &:before
+    content:  $fa-var-usd
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-rupee:before,
+  .#{$fa-css-prefix}-inr:before
+    content: $fa-var-inr
+
+%fa-inr
+  &:before
+    content:  $fa-var-inr
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-cny:before,
+  .#{$fa-css-prefix}-rmb:before,
+  .#{$fa-css-prefix}-yen:before,
+  .#{$fa-css-prefix}-jpy:before
+    content: $fa-var-jpy
+
+%fa-jpy
+  &:before
+    content:  $fa-var-jpy
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-ruble:before,
+  .#{$fa-css-prefix}-rouble:before,
+  .#{$fa-css-prefix}-rub:before
+    content: $fa-var-rub
+
+%fa-rub
+  &:before
+    content:  $fa-var-rub
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-won:before,
+  .#{$fa-css-prefix}-krw:before
+    content: $fa-var-krw
+
+%fa-krw
+  &:before
+    content:  $fa-var-krw
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bitcoin:before,
+  .#{$fa-css-prefix}-btc:before
+    content: $fa-var-btc
+
+%fa-btc
+  &:before
+    content:  $fa-var-btc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-file:before
+    content: $fa-var-file
+
+%fa-file
+  &:before
+    content:  $fa-var-file
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-file-text:before
+    content: $fa-var-file-text
+
+%fa-file-text
+  &:before
+    content:  $fa-var-file-text
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-alpha-asc:before
+    content: $fa-var-sort-alpha-asc
+
+%fa-sort-alpha-asc
+  &:before
+    content:  $fa-var-sort-alpha-asc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-alpha-desc:before
+    content: $fa-var-sort-alpha-desc
+
+%fa-sort-alpha-desc
+  &:before
+    content:  $fa-var-sort-alpha-desc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-amount-asc:before
+    content: $fa-var-sort-amount-asc
+
+%fa-sort-amount-asc
+  &:before
+    content:  $fa-var-sort-amount-asc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-amount-desc:before
+    content: $fa-var-sort-amount-desc
+
+%fa-sort-amount-desc
+  &:before
+    content:  $fa-var-sort-amount-desc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-numeric-asc:before
+    content: $fa-var-sort-numeric-asc
+
+%fa-sort-numeric-asc
+  &:before
+    content:  $fa-var-sort-numeric-asc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sort-numeric-desc:before
+    content: $fa-var-sort-numeric-desc
+
+%fa-sort-numeric-desc
+  &:before
+    content:  $fa-var-sort-numeric-desc
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-thumbs-up:before
+    content: $fa-var-thumbs-up
+
+%fa-thumbs-up
+  &:before
+    content:  $fa-var-thumbs-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-thumbs-down:before
+    content: $fa-var-thumbs-down
+
+%fa-thumbs-down
+  &:before
+    content:  $fa-var-thumbs-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-youtube-square:before
+    content: $fa-var-youtube-square
+
+%fa-youtube-square
+  &:before
+    content:  $fa-var-youtube-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-youtube:before
+    content: $fa-var-youtube
+
+%fa-youtube
+  &:before
+    content:  $fa-var-youtube
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-xing:before
+    content: $fa-var-xing
+
+%fa-xing
+  &:before
+    content:  $fa-var-xing
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-xing-square:before
+    content: $fa-var-xing-square
+
+%fa-xing-square
+  &:before
+    content:  $fa-var-xing-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-youtube-play:before
+    content: $fa-var-youtube-play
+
+%fa-youtube-play
+  &:before
+    content:  $fa-var-youtube-play
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dropbox:before
+    content: $fa-var-dropbox
+
+%fa-dropbox
+  &:before
+    content:  $fa-var-dropbox
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-stack-overflow:before
+    content: $fa-var-stack-overflow
+
+%fa-stack-overflow
+  &:before
+    content:  $fa-var-stack-overflow
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-instagram:before
+    content: $fa-var-instagram
+
+%fa-instagram
+  &:before
+    content:  $fa-var-instagram
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-flickr:before
+    content: $fa-var-flickr
+
+%fa-flickr
+  &:before
+    content:  $fa-var-flickr
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-adn:before
+    content: $fa-var-adn
+
+%fa-adn
+  &:before
+    content:  $fa-var-adn
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bitbucket:before
+    content: $fa-var-bitbucket
+
+%fa-bitbucket
+  &:before
+    content:  $fa-var-bitbucket
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bitbucket-square:before
+    content: $fa-var-bitbucket-square
+
+%fa-bitbucket-square
+  &:before
+    content:  $fa-var-bitbucket-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tumblr:before
+    content: $fa-var-tumblr
+
+%fa-tumblr
+  &:before
+    content:  $fa-var-tumblr
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-tumblr-square:before
+    content: $fa-var-tumblr-square
+
+%fa-tumblr-square
+  &:before
+    content:  $fa-var-tumblr-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-long-arrow-down:before
+    content: $fa-var-long-arrow-down
+
+%fa-long-arrow-down
+  &:before
+    content:  $fa-var-long-arrow-down
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-long-arrow-up:before
+    content: $fa-var-long-arrow-up
+
+%fa-long-arrow-up
+  &:before
+    content:  $fa-var-long-arrow-up
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-long-arrow-left:before
+    content: $fa-var-long-arrow-left
+
+%fa-long-arrow-left
+  &:before
+    content:  $fa-var-long-arrow-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-long-arrow-right:before
+    content: $fa-var-long-arrow-right
+
+%fa-long-arrow-right
+  &:before
+    content:  $fa-var-long-arrow-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-apple:before
+    content: $fa-var-apple
+
+%fa-apple
+  &:before
+    content:  $fa-var-apple
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-windows:before
+    content: $fa-var-windows
+
+%fa-windows
+  &:before
+    content:  $fa-var-windows
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-android:before
+    content: $fa-var-android
+
+%fa-android
+  &:before
+    content:  $fa-var-android
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-linux:before
+    content: $fa-var-linux
+
+%fa-linux
+  &:before
+    content:  $fa-var-linux
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dribbble:before
+    content: $fa-var-dribbble
+
+%fa-dribbble
+  &:before
+    content:  $fa-var-dribbble
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-skype:before
+    content: $fa-var-skype
+
+%fa-skype
+  &:before
+    content:  $fa-var-skype
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-foursquare:before
+    content: $fa-var-foursquare
+
+%fa-foursquare
+  &:before
+    content:  $fa-var-foursquare
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-trello:before
+    content: $fa-var-trello
+
+%fa-trello
+  &:before
+    content:  $fa-var-trello
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-female:before
+    content: $fa-var-female
+
+%fa-female
+  &:before
+    content:  $fa-var-female
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-male:before
+    content: $fa-var-male
+
+%fa-male
+  &:before
+    content:  $fa-var-male
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-gittip:before
+    content: $fa-var-gittip
+
+%fa-gittip
+  &:before
+    content:  $fa-var-gittip
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-sun-o:before
+    content: $fa-var-sun-o
+
+%fa-sun-o
+  &:before
+    content:  $fa-var-sun-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-moon-o:before
+    content: $fa-var-moon-o
+
+%fa-moon-o
+  &:before
+    content:  $fa-var-moon-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-archive:before
+    content: $fa-var-archive
+
+%fa-archive
+  &:before
+    content:  $fa-var-archive
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-bug:before
+    content: $fa-var-bug
+
+%fa-bug
+  &:before
+    content:  $fa-var-bug
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-vk:before
+    content: $fa-var-vk
+
+%fa-vk
+  &:before
+    content:  $fa-var-vk
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-weibo:before
+    content: $fa-var-weibo
+
+%fa-weibo
+  &:before
+    content:  $fa-var-weibo
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-renren:before
+    content: $fa-var-renren
+
+%fa-renren
+  &:before
+    content:  $fa-var-renren
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-pagelines:before
+    content: $fa-var-pagelines
+
+%fa-pagelines
+  &:before
+    content:  $fa-var-pagelines
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-stack-exchange:before
+    content: $fa-var-stack-exchange
+
+%fa-stack-exchange
+  &:before
+    content:  $fa-var-stack-exchange
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-o-right:before
+    content: $fa-var-arrow-circle-o-right
+
+%fa-arrow-circle-o-right
+  &:before
+    content:  $fa-var-arrow-circle-o-right
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-arrow-circle-o-left:before
+    content: $fa-var-arrow-circle-o-left
+
+%fa-arrow-circle-o-left
+  &:before
+    content:  $fa-var-arrow-circle-o-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-toggle-left:before,
+  .#{$fa-css-prefix}-caret-square-o-left:before
+    content: $fa-var-caret-square-o-left
+
+%fa-caret-square-o-left
+  &:before
+    content:  $fa-var-caret-square-o-left
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-dot-circle-o:before
+    content: $fa-var-dot-circle-o
+
+%fa-dot-circle-o
+  &:before
+    content:  $fa-var-dot-circle-o
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-wheelchair:before
+    content: $fa-var-wheelchair
+
+%fa-wheelchair
+  &:before
+    content:  $fa-var-wheelchair
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-vimeo-square:before
+    content: $fa-var-vimeo-square
+
+%fa-vimeo-square
+  &:before
+    content:  $fa-var-vimeo-square
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-turkish-lira:before,
+  .#{$fa-css-prefix}-try:before
+    content: $fa-var-try
+
+%fa-try
+  &:before
+    content:  $fa-var-try
+
+@if $fa-include-css
+  .#{$fa-css-prefix}-plus-square-o:before
+    content: $fa-var-plus-square-o
+
+%fa-plus-square-o
+  &:before
+    content:  $fa-var-plus-square-o
+

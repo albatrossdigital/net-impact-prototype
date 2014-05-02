@@ -1,0 +1,342 @@
+// @file
+// Place your mixins here. Feel free to roll your own mixins. Or nuke what is
+// currently here.
+
+// Current version of subnav in foundation gem doesn't allow
+// for li's for subnav
+=sub-nav-li($font-color: $sub-nav-font-color, $font-size: $sub-nav-font-size, $active-bg: $sub-nav-active-bg)
+  display: block
+  width: auto
+  overflow: hidden
+  margin: $sub-nav-list-margin
+  padding-top: $sub-nav-list-padding-top
+  margin-#{$opposite-direction}: 0
+  margin-#{$default-float}: emCalc(-9)
+  dt,
+  dd,
+  li
+    float: $default-float
+    display: inline
+    margin-#{$default-float}: emCalc(9)
+    margin-bottom: emCalc(10)
+    font-weight: $sub-nav-font-weight
+    font-size: $font-size
+    a
+      color: $font-color
+      text-decoration: $sub-nav-text-decoration
+    &.active a
+      +radius($sub-nav-border-radius)
+      font-weight: $sub-nav-active-font-weight
+      background: $active-bg
+      padding: $sub-nav-active-padding
+      cursor: $sub-nav-active-cursor
+      color: $sub-nav-active-color
+    @if $sub-nav-item-divider != ""
+      margin-#{$default-float}: 0
+      &:before
+        content: #{$sub-nav-item-divider}
+        margin: 0 $sub-nav-item-divider-margin
+      &:first-child:before
+        content: ""
+        margin: 0
+
+
+// Flight theme mixins that get included above
+//
+// @mixin fixed-background($image: url(../images/bg.jpg), $color: #fff)
+// @mixin fade-background($start, $stop, $position: top)
+// @mixin auto-fade-background($color, $position: top)
+// @mixin auto-fade-background-hover($color)
+// @mixin and-a($color)
+// @mixin link-clear($color)
+// @mixin clearfix
+// @mixin list-clear
+// @mixin list-float($float: left, $margin-horizontal: 10px, $margin-vertical: 0)
+// @mixin centered()
+// @mixin max-width-center($width: $grid-max-width)
+// @mixin respond($media)
+// @mixin sprite($left, $top, $url: url(../images/sprite.png))
+// @mixin sprite-block($width, $height, $left, $top, $url: url(../images/sprite.png?a))
+// @mixin get-sprite($map, $sprite, $offset-x: 0, $offset-y: 0, $repeat: no-repeat, $height: true, $width: true, $hover: false)
+// @mixin all-form-inputs()
+// @mixin full-width-form()
+
+//***********************************
+// Sprite Definitions
+//
+// Create folder in images/ called icons/ place any .png files in there,
+// and reference them by their file name
+//***********************************
+
+//@import "compass/utilities/sprites/base";
+
+//$disable-magic-sprite-selectors: true;
+
+// Use these lines for traditional compass sprites
+// see http://compass-style.org/help/tutorials/spriting/
+//@import "icons/*.png";
+
+//@include all-icons-sprites;
+
+// Use this style for sprites inside media queries
+// for use with +get-sprite() mixin
+//$icons: sprite-map("icons/*.png");
+
+//***********************************
+// Silent Extends
+//
+// Silent extends help cut down on the length of compiled css by routing
+// each call to the extend at the top of the css file.
+//
+// They cannot as of SASS 3.2.5 be used within media queries
+//
+//***********************************
+
+// fonts
+
+@mixin proxima($type: "normal") 
+  font-family: $proxima
+
+  @if $type == "normal"
+    font-weight: $font-weight-normal
+
+  @if $type == "light"
+    font-weight: $font-weight-light
+
+  @if $type == "thin"
+    font-weight: $font-weight-thin
+
+  @if $type == "bold"
+    font-weight: $font-weight-bold
+
+  @if $type == "extra"
+    font-weight: $font-weight-extra
+
+@mixin gothic($type: "normal") 
+  font-family: $gothic
+
+  @if $type == "normal"
+    font-weight: $font-weight-normal
+
+@mixin opensans($type: "normal") 
+  font-family: $opensans
+
+  @if $type == "normal"
+    font-weight: $font-weight-normal
+
+  @if $type == "light"
+    font-weight: $font-weight-light
+
+  @if $type == "bold"
+    font-weight: $font-weight-bold
+
+  @if $type == "extra"
+    font-weight: 800
+
+
+
+
+
+// general
+// -----------------------------------
+// use the +e() mixin
+
+%hide
+  display: none
+
+%show
+  display: block
+
+// backgrounds
+// -----------------------------------
+// use the +b() mixin
+
+%background_reset
+  background: transparent
+
+// text colors
+// -----------------------------------
+// use the +c() mixin
+
+%color_normal
+  color: $body-font-color
+
+%color_link
+  color: $anchor-font-color
+
+%color_hover
+  color: $anchor-font-color-hover
+
+// fonts
+// -----------------------------------
+// use the +f() mixin
+
+%font_normal
+  font-family: $body-font-family
+  font-style: $body-font-weight
+  font-weight: $body-font-weight
+
+%font_reset
+  @extend %font_normal
+  font-size: $base-font-size
+  line-height: $base-line-height
+
+%font_reset_full
+  @extend %font_reset
+  color: $body-font-color
+  text-transform: none
+
+// headers
+// -----------------------------------
+// use the +h() mixin
+
+%header_core
+  font-family: $header-font-family
+  font-weight: $header-font-weight
+  font-style: $header-font-style
+  color: $header-font-color
+  text-rendering: $header-text-rendering
+  margin-top: $header-top-margin
+  margin-bottom: $header-bottom-margin
+  line-height: $header-line-height - emCalc(3)
+
+%header_1
+  font-weight: $font-weight-bold
+
+%header_2
+  font-weight: $font-weight-bold
+
+%header_3
+  color: $blue
+  font-weight: $font-weight-normal
+
+%header_4
+  font-weight: $font-weight-bold
+
+%header_5
+  font-weight: $font-weight-normal
+
+%header_6
+  color: $black
+  font-size: $h6-font-size
+
+// general extend
+// use: +e(hide)
+=e($extend)
+  @extend %#{$extend}
+
+// extend for backgrounds
+// use: +b(reset)
+=b($extend)
+  @extend %background_#{$extend}
+
+// extend for text color
+// use: +c(normal)
+=c($extend)
+  @extend %color_#{$extend}
+
+// extend for font styles
+// use: +f(reset)
+=f($extend)
+  @extend %font_#{$extend}
+
+=h-size($extend, $mobile)
+  @if $mobile
+    @if $extend == 1
+      font-size: $h1-mobile-size
+    @else if $extend == 2
+      font-size: $h2-mobile-size
+    @else if $extend == 3
+      font-size: $h3-mobile-size
+    @else if $extend == 4
+      font-size: $h4-mobile-size
+    @else if $extend == 5
+      font-size: $h5-mobile-size
+
+  @else 
+    @if $extend == 1
+      font-size: $h1-font-size
+    @else if $extend == 2
+      font-size: $h2-font-size
+    @else if $extend == 3
+      font-size: $h3-font-size
+    @else if $extend == 4
+      font-size: $h4-font-size
+    @else if $extend == 5
+      font-size: $h5-font-size
+
+// extend for header styles
+// use: +h(1)
+=h($extend, $mobile: true, $core: false)
+  @extend %header_#{$extend}
+  +h-size($extend, $mobile)
+
+
+//***********************************
+// Animations
+//
+// for css3 spinner and other animations
+//***********************************
+
+$animation-time: 0.6s !default
+
+=rotation($time: $animation-time)
+  -webkit-animation: rotation $time infinite linear
+  -moz-animation: rotation $time infinite linear
+  -o-animation: rotation $time infinite linear
+  animation: rotation $time infinite linear
+
+=rotation-init
+  @-webkit-keyframes rotation
+    from
+      -webkit-transform: rotate(0deg)
+    to
+      -webkit-transform: rotate(359deg)
+
+  @-moz-keyframes rotation
+    from
+      -moz-transform: rotate(0deg)
+    to
+      -moz-transform: rotate(359deg)
+
+  @-o-keyframes rotation
+    from
+      -o-transform: rotate(0deg)
+    to
+      -o-transform: rotate(359deg)
+
+  @keyframes rotation
+    from
+      transform: rotate(0deg)
+    to
+      transform: rotate(359deg)
+
+=spinner-active($border-color: $animation-rotation-border-color, $time: $animation-time)
+  +rotation($time)
+  &:before
+    border-top-color: $border-color
+
+=spinner-core($dimensions, $border-color-inactive: $animation-rotation-border-color-inactive, $border-width: $animation-rotation-border-width)
+  $width: nth($dimensions, 1)
+  $height: $width
+  @if length($dimensions) == 2
+    $height: nth($dimensions, 2)
+  height: $height
+  width: $width
+  display: inline-block
+  position: relative
+  border: $border-width solid $border-color-inactive
+  border-radius: 100%
+  &:before
+    content: ""
+    display: block
+    position: absolute
+    left: -$border-width
+    top: -$border-width
+    height: $height
+    width: $width
+    border-top: $border-width solid $border-color-inactive
+    border-left: $border-width solid transparent
+    border-bottom: $border-width solid transparent
+    border-right: $border-width solid transparent
+    border-radius: 100%

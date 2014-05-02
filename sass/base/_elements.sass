@@ -1,0 +1,131 @@
+// Elements
+//
+// Things to review before you write code here:
+// - Be sure to load after "foundation" import.
+// - Also, before adding styles be sure to modify variables in the
+//   "scss/_variables.scss" file. You may not need to write any code.
+body
+  line-height: 150%
+
+
+// Headings
+//------------------------------------------
+
+h1, h2, h3, h4, h5
+  a 
+    color: $blue
+
+    &:hover
+      color: darken($blue, 10%)
+
+h1
+  +h(1)
+
+h2
+  +h(2)
+
+h3
+  +h(3)
+
+h4
+  +h(4)
+
+h5
+  +h(5)
+
+
+
+// Anchors
+//-----------------------------------------------------------------------------
+a
+
+a:focus, a:active
+  color: $gray-dark
+
+// a.active,
+// a:active,
+// a:hover {}
+
+// Page elements
+//-----------------------------------------------------------------------------
+
+blockquote
+  font-style: italic
+  font-size: 1.65em
+
+  &, p, cite 
+    color: $black
+
+  p
+    line-height: 1.4
+
+  p ~ cite 
+    margin-top: -1em
+
+  cite
+    font-style: normal
+
+
+// Form Input
+//-----------------------------------------------------------------------------
+// input[type="text"],
+// input[type="password"],
+// input[type="date"],
+// input[type="datetime"],
+// input[type="datetime-local"],
+// input[type="month"],
+// input[type="week"],
+// input[type="email"],
+// input[type="number"],
+// input[type="search"],
+// input[type="tel"],
+// input[type="time"],
+// input[type="url"],
+
+textarea
+  height: auto
+
+// input[type="text"],
+// input[type="password"],
+// input[type="date"],
+// input[type="datetime"],
+// input[type="datetime-local"],
+// input[type="month"],
+// input[type="week"],
+// input[type="email"],
+// input[type="number"],
+// input[type="search"],
+// input[type="tel"],
+// input[type="time"],
+// input[type="url"],
+// textarea {
+
+// }
+
+// select {}
+
+
+
+// *
+// * Media Queries
+// *
+// ******************************************************
+
+//+mq-test($tablet)
+
++respond($small)
+
+  h1
+    +h-size(1, false)
+
+  h2
+    +h-size(2, false)
+
+  h3
+    +h-size(3, false)
+
+  h4
+    +h-size(4, false)
+
+  h5
+    +h-size(5, false)

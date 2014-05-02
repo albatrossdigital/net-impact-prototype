@@ -1,0 +1,47 @@
+// Global Zurb Foundation variables.
+@import variables
+
+// Base
+//
+// Init file contains required imports. Here's where we include normalize,
+// foundation and also compass.
+@import base/init
+
+@import "flight base/mixins"
+
+// Import our mixins early so they can be used by other partials.
+@import base/mixins
+
+//
+// Common file is where you place common utility classes to extend or
+// parametrics. Optional file.
+@import base/common
+
+//
+// Fix for some Drupal CSS quirks (Drupalisms).
+@import base/drupal
+
+//
+// Styling for elements.
+@import base/elements
+
+// Layout
+//
+// Each section of the document has it's own partial seperated out to improve
+// developer experience. Additionally, grids can be declared in layouts as well.
+@import layout/page
+@import layout/header
+@import layout/main
+@import layout/aside
+@import layout/triptych
+@import layout/footer
+
+// Components
+@import components/type
+@import "components/icons-fontawesome"
+
+// Modules
+@import "modules/buttons"
+@import modules/forms
+@import modules/side-nav
+@import modules/sub-nav
